@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alan Menken - Featured Work</title>
+
+    
+    <!-- Local Fonts -->
+    <style>
+        @font-face {
+            font-family: 'Clearface';
+            src: url('assets/fonts/ClearfaceStd-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Clearface';
+            src: url('assets/fonts/ClearfaceStd-Italic.woff2') format('woff2');
+            font-weight: 400;
+            font-style: italic;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Clearface';
+            src: url('assets/fonts/ClearfaceStd-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Graphik';
+            src: url('assets/fonts/Graphik-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Graphik';
+            src: url('assets/fonts/Graphik-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Disney Script';
+            src: url('assets/fonts/Walt-Disney-Script-v41.ttf.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Desire';
+            src: url('assets/fonts/Desire.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Desire Lowercase 1';
+            src: url('assets/fonts/DesireLowercase1.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Desire Lowercase 2';
+            src: url('assets/fonts/DesireLowercase2.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Desire Lowercase 3';
+            src: url('assets/fonts/DesireLowecase3.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+    
+        .logo-text.hidden-logo {
+            opacity: 0 !important;
+            
+            transform: translateY(-50px) rotate(-2deg) !important;
+            pointer-events: none !important;
+        }
+        
+    </style>
+
+
+    <style>
+        @font-face {
+            font-family: 'ITC Clearface';
+            src: url('assets/fonts/ClearfaceStd-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ITC Clearface';
+            src: url('assets/fonts/ClearfaceStd-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ITC Clearface';
+            src: url('assets/fonts/ClearfaceStd-Heavy.woff2') format('woff2');
+            font-weight: 900;
+            font-style: normal;
+        }
+
+        :root {
+            --bg-color: #EBE8E0;
+            --text-color: #1a1a1a;
+            --easing: cubic-bezier(0.77, 0, 0.175, 1);
+            --easing-soft: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body,
+        html {
+            background-color: var(--bg-color);
+            background-image: url('https://res.cloudinary.com/dir57w3tf/image/upload/vintage_90s_bg_qvydjd.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: var(--text-color);
+            font-family: 'Clearface', serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Vignette and Retro Film Feel */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -1;
+            /* Radial gradient vignette */
+            background: radial-gradient(circle at center, transparent 30%, rgba(60, 40, 20, 0.15) 100%);
+            mix-blend-mode: multiply;
+        }
+
+        /* Menu Overlay (Dropdown Navigation) */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 42vh;
+            background-color: #111111;
+            z-index: 90;
+            transform: translateY(-100%);
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding-bottom: 4rem;
+            will-change: transform;
+        }
+
+        /* Fine Film Grain on Menu Overlay */
+        .menu-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.18;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .menu-overlay.open {
+            transform: translateY(0);
+        }
+
+        .menu-nav {
+            position: relative;
+            z-index: 1;
+            /* Di atas noise */
+            display: flex;
+            gap: 5rem;
+            align-items: baseline;
+        }
+
+        .menu-link {
+            font-family: 'Clearface', serif;
+            font-size: 2.8rem;
+            color: #555;
+            text-decoration: none;
+            transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+            opacity: 0;
+            transform: translateY(20px);
+            cursor: pointer;
+        }
+
+        .menu-link.active {
+            color: #EBE8E0;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        /* Animasi staggered masuk ketika menu terbuka */
+        .menu-overlay.open .menu-link {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .menu-overlay.open .menu-link:nth-child(1) {
+            transition-delay: 0.3s;
+        }
+
+        .menu-overlay.open .menu-link:nth-child(2) {
+            transition-delay: 0.4s;
+        }
+
+        .menu-overlay.open .menu-link:nth-child(3) {
+            transition-delay: 0.5s;
+        }
+
+        .menu-overlay.open .menu-link:nth-child(4) {
+            transition-delay: 0.6s;
+        }
+
+        .menu-overlay.open .menu-link:nth-child(5) {
+            transition-delay: 0.7s;
+        }
+
+        .menu-overlay:not(.open) .menu-link {
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            transition-delay: 0s;
+        }
+
+        /* Header dengan Efek Mix-Blend-Mode */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            color: #ffffff;
+            mix-blend-mode: difference;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .icon-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .icon-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+        }
+
+        #menu-toggle svg rect {
+            transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        #menu-toggle svg rect:nth-child(2) {
+            transform: translateY(-5px);
+        }
+
+        #menu-toggle:hover svg rect:nth-child(1),
+        #menu-toggle:hover svg rect:nth-child(3),
+        body.menu-active #menu-toggle svg rect:nth-child(1),
+        body.menu-active #menu-toggle svg rect:nth-child(3) {
+            transform: translateY(-5px);
+        }
+
+        #menu-toggle:hover svg rect:nth-child(2),
+        body.menu-active #menu-toggle svg rect:nth-child(2) {
+            transform: translateY(5px);
+        }
+
+
+        .logo-text {
+            font-family: 'Disney Script', cursive;
+            font-size: 3.8rem;
+            font-weight: 400;
+            color: inherit;
+            line-height: 1;
+            transform: translateY(-15px) rotate(-2deg);
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        /* Main Content */
+        .main-content,
+        .footer {
+            transition: opacity 0.8s ease;
+        }
+
+        /* Hilangkan blur agar font tetap tajam, hanya turunkan opacity */
+        body.menu-active .main-content,
+        body.menu-active .footer {
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 3rem;
+            position: relative;
+        }
+
+        /* View Containers */
+        .view-gallery {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .view-single {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+        }
+
+        /* Single View Styles */
+        .single-gallery {
+            position: relative;
+            width: 55.5vw;
+            height: 70vh;
+        }
+
+        .single-slice {
+            position: absolute;
+            overflow: hidden;
+            left: var(--l);
+            top: var(--t);
+            height: var(--h);
+            width: var(--w, 7vw);
+            background-color: transparent;
+        }
+
+        .single-slice-img,
+        .single-slice-media {
+            position: absolute;
+            left: calc(-1 * var(--l));
+            top: calc(-1 * var(--t));
+            width: 53.5vw;
+            height: 70vh;
+            object-fit: cover;
+        }
+
+        .single-slice-img {
+            filter: grayscale(100%) contrast(1.1) brightness(1.05) sepia(0.2);
+            mix-blend-mode: multiply;
+            z-index: 2;
+        }
+
+        .single-slice-media {
+            z-index: 3;
+        }
+
+        .dark-box {
+            background-color: #1a1a1a;
+            color: #EBE8E0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 6;
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            overflow: visible !important;
+        }
+
+        .dark-box:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        .riverbend-text-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .riverbend-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-family: 'Clearface', serif;
+            font-size: 1.3rem;
+            letter-spacing: 0.05em;
+            font-weight: 300;
+            font-style: italic;
+            margin-top: auto;
+            margin-bottom: 2rem;
+            white-space: nowrap;
+        }
+
+        .play-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .play-circle:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .play-circle svg {
+            width: 10px;
+            height: 10px;
+            fill: currentColor;
+            margin-left: 2px;
+        }
+
+        /* Title Box */
+        .title-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+            z-index: 4;
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            cursor: pointer;
+            overflow: visible !important;
+        }
+
+        .title-box:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .vertical-title-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 3.5rem;
+            position: relative;
+        }
+
+        .vertical-title {
+            writing-mode: vertical-rl;
+            font-family: 'Clearface', serif;
+            font-size: 4.5rem;
+            font-weight: 400;
+            letter-spacing: 0.03em;
+            word-spacing: -0.05em;
+            color: #1a1a1a;
+            line-height: 0.95;
+            text-align: center;
+        }
+
+        .title-signature {
+            font-family: 'Disney Script', cursive;
+            font-size: clamp(2.5rem, 3.5vh, 3.5rem);
+            color: #1a1a1a;
+            position: absolute;
+            bottom: -2rem;
+            left: 50%;
+            transform: translateX(-50%) rotate(-10deg);
+        }
+
+        .explore-text {
+            font-family: 'Graphik', sans-serif;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            text-align: center;
+            font-weight: 700;
+            line-height: 1.6;
+            color: #1a1a1a;
+            width: 15vw;
+            white-space: nowrap;
+        }
+
+        /* Side Navigation */
+        .side-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .left-nav {
+            left: 4rem;
+        }
+
+        .right-nav {
+            right: 4rem;
+        }
+
+        .nav-text {
+            font-family: 'Graphik', sans-serif;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            text-align: center;
+            color: #555;
+            font-weight: 700;
+            line-height: 1.4;
+            transition: color 0.3s;
+        }
+
+        .side-nav:hover .nav-text {
+            color: #1a1a1a;
+        }
+
+        .nav-arrow {
+            width: 30px;
+            height: 30px;
+            color: #555;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-arrow svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Gallery */
+        .gallery-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 52vh;
+        }
+
+        .gallery {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.1vw;
+            height: 100%;
+            width: 100%;
+            transition: transform 0.8s var(--easing);
+        }
+
+        /* 5 Kiri mengusap ke Kanan -> Menahan sisi kiri agar tetap diam (mendorong ke kanan saja) */
+        .gallery:has(.col:nth-child(-n+5):hover) {
+            transform: translateX(4.75vw);
+        }
+
+        /* 5 Kanan mengusap ke Kiri -> Menahan sisi kanan agar tetap diam (mendorong ke kiri saja) */
+        .gallery:has(.col:nth-child(n+6):hover) {
+            transform: translateX(-4.75vw);
+        }
+
+        .col {
+            width: 5.5vw;
+            position: relative;
+            border-radius: 1px;
+            overflow: hidden;
+            cursor: pointer;
+            background-color: transparent;
+            opacity: 0.25;
+            /* Faded by default */
+            transition: width 0.8s var(--easing),
+                height 0.8s var(--easing),
+                top 0.8s var(--easing),
+                opacity 0.6s var(--easing-soft),
+                filter 0.6s var(--easing-soft),
+                transform 0.6s var(--easing-soft);
+        }
+
+        /* Accurate Heights & Vertical Alignments */
+        .col:nth-child(1) {
+            height: 92%;
+            top: 0%;
+        }
+
+        .col:nth-child(2) {
+            height: 92%;
+            top: 4%;
+        }
+
+        .col:nth-child(3) {
+            height: 92%;
+            top: 2%;
+        }
+
+        .col:nth-child(4) {
+            height: 92%;
+            top: -3%;
+        }
+
+        .col:nth-child(5) {
+            height: 92%;
+            top: -6%;
+        }
+
+        .col:nth-child(6) {
+            height: 92%;
+            top: 6%;
+        }
+
+        .col:nth-child(7) {
+            height: 92%;
+            top: -1%;
+        }
+
+        .col:nth-child(8) {
+            height: 92%;
+            top: 1%;
+        }
+
+        .col:nth-child(9) {
+            height: 92%;
+            top: -4%;
+        }
+
+        .col:nth-child(10) {
+            height: 92%;
+            top: 3%;
+        }
+
+        .gallery:hover .col:not(:hover) {
+            opacity: 0.15;
+            filter: grayscale(100%) brightness(0.8);
+            transform: scale(0.98);
+        }
+
+        .col:hover {
+            width: 15vw;
+            opacity: 1 !important;
+            z-index: 10;
+        }
+
+        .col img,
+        .col video {
+            position: absolute;
+            top: 0;
+            width: 15vw;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .col img {
+            filter: grayscale(100%) contrast(1.1) brightness(1.05) sepia(0.2);
+            mix-blend-mode: multiply;
+            z-index: 2;
+        }
+
+        .col video {
+            z-index: 3;
+            transition: clip-path 0.8s var(--easing);
+        }
+
+        /* 5 Gambar Kiri: Jangkar Kiri, Video Mengusap Kanan */
+        .col:nth-child(-n+5) img,
+        .col:nth-child(-n+5) video {
+            left: 0;
+        }
+
+        .col:nth-child(-n+5) video {
+            clip-path: inset(0 100% 0 0);
+        }
+
+        /* 5 Gambar Kanan: Jangkar Kanan, Video Mengusap Kiri */
+        .col:nth-child(n+6) img,
+        .col:nth-child(n+6) video {
+            right: 0;
+        }
+
+        .col:nth-child(n+6) video {
+            clip-path: inset(0 0 0 100%);
+        }
+
+        .col:hover video {
+            clip-path: inset(0 0 0 0);
+        }
+
+        /* Featured Text & Dynamic Content */
+        .featured-text-wrapper {
+            height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .featured-text {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .featured-text h2 {
+            font-family: 'Clearface', serif;
+            font-size: 4.8rem;
+            font-style: italic;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        .star-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tiny-star {
+            position: absolute;
+            top: -0.1em;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0.25em;
+            height: 0.25em;
+            fill: currentColor;
+        }
+
+        .featured-text p.subtitle {
+            font-family: 'Graphik', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.2rem;
+            font-weight: 700;
+            color: #444;
+        }
+
+        .featured-text p.desc {
+            font-family: 'Graphik', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-top: 0.4rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            cursor: pointer;
+        }
+
+        .footer-left span {
+            font-family: 'Graphik', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .footer-controls {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .play-btn {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease, border 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .play-btn::after {
+            content: '';
+            width: 18px;
+            height: 12px;
+            background-color: var(--text-color);
+            border-radius: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .play-btn:hover,
+        .play-btn.active {
+            background-color: #e4e1d8;
+            border: 1px solid var(--text-color);
+            transform: scale(1.05);
+        }
+
+        .play-btn:hover::after,
+        .play-btn.active::after {
+            transform: scale(1.1);
+        }
+
+        .list-btn {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            position: relative;
+            background: transparent;
+            border: 1px solid transparent;
+        }
+
+        .list-btn.active {
+            background-color: #e4e1d8;
+            border: 1px solid var(--text-color);
+        }
+
+        .list-btn::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 1px;
+            right: 3px;
+            bottom: 0px;
+            border: 1.2px solid var(--text-color);
+            border-radius: 50% 55% 45% 50%;
+            transform: rotate(-15deg);
+        }
+
+        .list-btn::after {
+            content: '';
+            position: absolute;
+            top: 0px;
+            left: 3px;
+            right: -1px;
+            bottom: 3px;
+            border: 1px solid var(--text-color);
+            border-radius: 45% 50% 55% 50%;
+            transform: rotate(35deg);
+        }
+
+        .list-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .list-line {
+            width: 4px;
+            height: 15px;
+            background-color: var(--text-color);
+            border-radius: 2px;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .list-btn:hover .list-line:nth-child(even) {
+            transform: scaleY(0.8);
+        }
+
+        .list-btn:hover .list-line:nth-child(odd) {
+            transform: scaleY(1.2);
+        }
+
+        .footer-right {
+            width: 100px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .gallery {
+                gap: 1.5vw;
+            }
+
+            .col {
+                width: 8vw;
+            }
+
+            .featured-text h2 {
+                font-size: 4rem;
+            }
+
+            .menu-nav {
+                gap: 3rem;
+            }
+
+            .menu-link {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-overlay {
+                height: 100vh;
+                align-items: center;
+                padding-bottom: 0;
+            }
+
+            .menu-nav {
+                flex-direction: column;
+                gap: 1.5rem;
+                align-items: center;
+            }
+
+            .gallery-wrapper {
+                height: 40vh;
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding: 0 2rem;
+            }
+
+            .gallery {
+                width: auto;
+                justify-content: flex-start;
+                gap: 1rem;
+            }
+
+            .col {
+                width: 15vw;
+                flex-shrink: 0;
+            }
+
+            .featured-text h2 {
+                font-size: 3rem;
+            }
+
+            .header,
+            .footer {
+                padding: 1.5rem 2rem;
+            }
+
+            .logo-text {
+                font-size: 3.8rem;
+            }
+        }
+
+        /* Intro Screen */
+        #intro-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #000000;
+            color: #EBE8E0;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Clearface', serif;
+        }
+
+        #intro-screen::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.15;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .intro-sound {
+            position: absolute;
+            top: 10%;
+            font-size: 1.2rem;
+            color: rgba(235, 232, 224, 0.6);
+            letter-spacing: 0.05em;
+            z-index: 1;
+        }
+
+        .intro-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .intro-signature {
+            font-family: 'Disney Script', cursive;
+            font-size: 10rem;
+            font-weight: 400;
+            line-height: 0.8;
+            margin-bottom: 2.5rem;
+            color: #EBE8E0;
+            transform: rotate(-3deg);
+        }
+
+        .intro-desc {
+            font-size: 1.45rem;
+            text-align: center;
+            line-height: 1.4;
+            color: rgba(235, 232, 224, 0.7);
+            letter-spacing: 0.02em;
+        }
+
+        .intro-enter {
+            position: absolute;
+            bottom: 15%;
+            font-size: 1.1rem;
+            color: #EBE8E0;
+            cursor: pointer;
+            z-index: 1;
+            padding-bottom: 4px;
+            border-bottom: 1px solid rgba(235, 232, 224, 0.5);
+            transition: border-color 0.3s ease, color 0.3s ease;
+            letter-spacing: 0.05em;
+        }
+
+        .intro-enter:hover {
+            color: #fff;
+            border-bottom: 1px solid #fff;
+        }
+
+        /* News Sidebar */
+        .news-sidebar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 380px;
+            max-width: 90vw;
+            height: 100vh;
+            background-color: #000;
+            z-index: 10000;
+            display: flex;
+            transform: translateX(-100%);
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+            color: #EBE8E0;
+            border-right: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .news-sidebar.open {
+            transform: translateX(0);
+        }
+
+        .news-sidebar-left {
+            width: 55px;
+            height: 100%;
+            border-right: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 2.2rem;
+            padding-bottom: 4rem;
+        }
+
+        .news-sidebar-left-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .news-follow-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-family: 'Graphik', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: rgba(235, 232, 224, 0.4);
+            margin-bottom: 2rem;
+        }
+
+        .news-socials {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .news-socials a {
+            color: rgba(235, 232, 224, 0.8);
+            transition: color 0.3s, transform 0.3s;
+            display: flex;
+            justify-content: center;
+        }
+
+        .news-socials a:hover {
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .news-socials svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        .news-sidebar-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .news-header {
+            padding: 2.5rem 1.8rem 1rem 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .news-close-btn {
+            background: none;
+            border: none;
+            color: #EBE8E0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .news-close-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .news-close-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .news-title {
+            font-family: 'Clearface', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.02em;
+        }
+
+        .star-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .star-wrapper .tiny-star {
+            position: absolute;
+            top: -0.1em;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0.35em;
+            height: 0.35em;
+            fill: currentColor;
+        }
+
+        .news-feed {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0 1.8rem 4rem 1.8rem;
+        }
+
+        .news-feed::-webkit-scrollbar {
+            width: 4px;
+        }
+        .news-feed::-webkit-scrollbar-thumb {
+            background-color: rgba(255,255,255,0.15);
+            border-radius: 4px;
+        }
+
+        .news-item {
+            padding: 2.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            margin-bottom: 1.2rem;
+            border-radius: 2px;
+        }
+
+        .news-item h3 {
+            font-family: 'Clearface', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 0.8rem;
+            color: #EBE8E0;
+        }
+
+        .news-item p {
+            font-family: 'Clearface', serif;
+            font-size: 1.05rem;
+            line-height: 1.4;
+            color: rgba(235, 232, 224, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .news-item p:last-child {
+            margin-bottom: 0;
+        }
+
+        .news-link {
+            font-family: 'Graphik', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #EBE8E0;
+            text-decoration: none;
+            display: inline-block;
+            transition: opacity 0.3s;
+        }
+
+        .news-link:hover {
+            opacity: 0.6;
+        }
+
+        /* Background dimming */
+        body.news-active .main-content,
+        body.news-active .footer,
+        body.news-active .header {
+            opacity: 0.15;
+            pointer-events: none;
+            transform: translateX(4vw);
+            transition: opacity 0.8s var(--easing), transform 0.8s var(--easing);
+        }
+    
+        /* FAQ Page CSS */
+        html, body {
+            overflow-y: auto; /* allow normal scrolling */
+            height: auto;
+            min-height: 100vh;
+        }
+        
+        .faq-main {
+            width: 100%;
+            min-height: 100vh;
+            padding-top: 25vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .faq-header-content {
+            text-align: center;
+            margin-bottom: 12vh;
+        }
+
+        .faq-title {
+            font-family: 'Clearface', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.8rem;
+            -webkit-text-stroke: 1px currentColor;
+            cursor: pointer;
+            height: 6rem;
+            line-height: 6rem;
+        }
+
+        .faq-a-letter {
+            display: inline-block;
+            margin: 0 0px;
+            transition: font-family 0s, transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55), margin 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform-style: preserve-3d;
+        }
+
+        .faq-title:hover .faq-a-letter {
+            font-family: 'Desire Lowercase 1', serif;
+            transform: rotateY(360deg) scale(1.3);
+            font-weight: 400;
+            font-feature-settings: "swsh" 1;
+            margin: 0 10px;
+        }
+
+        .faq-subtitle {
+            font-family: 'Clearface', serif;
+            font-size: 1.15rem;
+            font-weight: 400;
+            color: rgba(26, 26, 26, 0.8);
+            letter-spacing: 0.02em;
+            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .faq-title:hover + .faq-subtitle {
+            transform: translateY(22px);
+        }
+
+        .faq-list {
+            width: 100%;
+            max-width: 900px;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
+
+        .faq-item:first-child {
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            cursor: pointer;
+            font-family: 'ITC Clearface', 'Clearface', 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: #1a1a1a;
+            transition: color 0.3s;
+        }
+
+        .faq-question:hover {
+            color: #000;
+        }
+        
+        .faq-question span:first-child {
+            padding-right: 2rem;
+            line-height: 1.4;
+        }
+
+        .faq-icon {
+            width: 26px;
+            height: 26px;
+            flex-shrink: 0;
+        }
+
+        .faq-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke-width: 1.5px !important;
+        }
+
+        .vert-line {
+            transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.4s;
+            transform-origin: center;
+        }
+
+        .faq-item.active .vert-line {
+            transform: scaleY(0);
+            opacity: 0;
+        }
+
+        .faq-answer {
+            height: 0;
+            opacity: 0;
+            font-family: 'ITC Clearface', 'Clearface', 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            line-height: 1.5;
+            color: #4a4a4a;
+        }
+        
+        .faq-answer-inner {
+            padding-bottom: 4rem;
+            padding-top: 1rem;
+            max-width: 48%;;
+        }
+
+        .faq-answer a {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px solid currentColor;
+            padding-bottom: 1px;
+            transition: opacity 0.3s;
+        }
+        .faq-answer a:hover {
+            opacity: 0.6;
+        }
+</style>
+</head>
+
+<body>
+    
+    </div>
+
+    <!-- Menu Dropdown -->
+    <div class="menu-overlay">
+        <nav class="menu-nav">
+            <a href="index.html" class="menu-link">Hom<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span></a>
+            <a href="work.html" class="menu-link">Work</a>
+            <a href="biography.html" class="menu-link">Biography</a>
+            <a href="awards.html" class="menu-link">Awards</a>
+            <a href="faq.html" class="menu-link active">FAQ</a>
+        </nav>
+    </div>
+
+    <!-- News Sidebar -->
+    <div id="news-sidebar" class="news-sidebar">
+        <div class="news-sidebar-left">
+            <button class="news-close-btn" id="news-close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5">
+                    <path d="M18 6L6 18M6 6l12 12"></path>
+                </svg>
+            </button>
+            <div class="news-sidebar-left-bottom">
+                <div class="news-follow-text">FOLLOW ALAN</div>
+                <div class="news-socials">
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.05c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/></svg></a>
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7v-7H9.5v-2.5H12V9c0-2.5 1.5-3.87 3.75-3.87 1.07 0 2 .08 2.27.12v2.63l-1.56.01c-1.22 0-1.46.58-1.46 1.43v1.88h2.9l-.38 2.5h-2.52V21h4.94a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/></svg></a>
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.22.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.22-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.22-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.05-.41-2.22-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.22.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.05-.36 2.22-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.77.13 4.9.33 4.14.63c-.8.3-1.47.73-2.14 1.4-.67.67-1.1 1.34-1.4 2.14-.3.76-.5 1.63-.56 2.91C0 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.28.26 2.15.56 2.91.3.8.73 1.47 1.4 2.14.67.67 1.34 1.1 2.14 1.4.76.3 1.63.5 2.91.56C8.33 24 8.74 24 12 24s3.67-.01 4.95-.07c1.28-.06 2.15-.26 2.91-.56.8-.3 1.47-.73 2.14-1.4.67-.67 1.1-1.34 1.4-2.14.3-.76.5-1.63.56-2.91C23.99 15.67 24 15.26 24 12s-.01-3.67-.07-4.95c-.06-1.28-.26-2.15-.56-2.91-.3-.8-.73-1.47-1.4-2.14-.67-.67-1.34-1.1-2.14-1.4-.76-.3-1.63-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm5.8-9.26a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg></a>
+                </div>
+            </div>
+        </div>
+        <div class="news-sidebar-content">
+            <div class="news-header">
+                <h2 class="news-title">Wh<span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>t's H<span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>ppening</h2>
+            </div>
+            
+            <div class="news-feed">
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news1/600/600" alt="News Image" class="news-img">
+                    <h3>Original London Cast Recording Released</h3>
+                    <p>The Hercules Original London Cast Recording is set to be released on 10th of October for digital download and streaming, 21st of November on CD and 5th of December on Vinyl.</p>
+                </div>
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news2/600/400" alt="News Image" class="news-img">
+                    <h3>"Aladdin" on Broadway celebrates 4,000 performances</h3>
+                    <p>The beloved musical reaches a historic milestone, honoring the late Howard Ashman.</p>
+                    <a href="#" class="news-link">READ MORE</a>
+                </div>
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news3/600/400" alt="News Image" class="news-img">
+                    <h3>Little Shop of Horrors Returns</h3>
+                    <p>The cult classic revival continues its acclaimed run off-Broadway starring new cast members.</p>
+                    <a href="#" class="news-link">WATCH THE COMPLETE PERFORMANCE HERE</a>
+                </div>
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news4/600/400" alt="News Image" class="news-img">
+                    <h3>Tangled Stage Musical Announced</h3>
+                    <p>Alan Menken returns to compose new songs for the upcoming theatrical adaptation of Tangled.</p>
+                    <a href="#" class="news-link">SEE DETAILS</a>
+                </div>
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news5/600/400" alt="News Image" class="news-img">
+                    <h3>Beauty and the Beast 30th Anniversary Concert</h3>
+                    <p>A special live-to-film concert event celebrating three decades of the timeless classic.</p>
+                    <a href="#" class="news-link">GET TICKETS</a>
+                </div>
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news6/600/400" alt="News Image" class="news-img">
+                    <h3>Pocahontas Soundtrack Remastered Release</h3>
+                    <p>Experience the Academy Award-winning score like never before on limited edition vinyl.</p>
+                    <a href="#" class="news-link">PRE-ORDER NOW</a>
+                </div>
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news7/600/400" alt="News Image" class="news-img">
+                    <h3>New Documentary: The Menken Magic</h3>
+                    <p>A behind-the-scenes look at the composer's prolific career and his lasting impact on modern musicals.</p>
+                    <a href="#" class="news-link">WATCH TRAILER</a>
+                </div>
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news8/600/400" alt="News Image" class="news-img">
+                    <h3>Newsies UK Tour Dates Revealed</h3>
+                    <p>The Tony-winning hit is hitting the road across the United Kingdom this fall.</p>
+                    <a href="#" class="news-link">TOUR DATES</a>
+                </div>
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news9/600/400" alt="News Image" class="news-img">
+                    <h3>Enchanted Live in Concert</h3>
+                    <p>A one-night-only spectacular featuring the original cast members performing the iconic songs.</p>
+                    <a href="#" class="news-link">BUY TICKETS</a>
+                </div>
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news10/600/400" alt="News Image" class="news-img">
+                    <h3>Alan Menken Receives Lifetime Achievement Award</h3>
+                    <p>Honoring a legendary career spanning film, television, and theater.</p>
+                    <a href="#" class="news-link">READ FULL STORY</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <button class="icon-btn" id="news-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2c-.8 0-1.5.7-1.5 1.5v.68c-2.83.48-5 2.94-5 6.07v5l-2.5 2.5v1h18v-1L18.5 15.25v-5c0-3.13-2.17-5.59-5-6.07V3.5C13.5 2.7 12.8 2 12 2zm-2 18c0 1.1.9 2 2 2s2-.9 2-2h-4z"/>
+            </svg>
+        </button>
+
+        <a href="#" class="logo-text">John Williams</a>
+
+        <button class="icon-btn" id="menu-toggle">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="overflow: visible;">
+                <rect x="5" y="2" width="2" height="20" rx="1"/>
+                <rect x="11" y="2" width="2" height="20" rx="1"/>
+                <rect x="17" y="2" width="2" height="20" rx="1"/>
+            </svg>
+        </button>
+    </header>
+
+    
+    <main class="faq-main">
+        <div class="faq-header-content">
+            <h1 class="faq-title">F<span class="star-wrapper"><span class="faq-a-letter">a</span><svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>Q</h1>
+            <p class="faq-subtitle">Find your answers for the most asked questions</p>
+        </div>
+        
+                <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How can I send fan mail or request an autograph from John Williams?</span>
+                    <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><line x1="4" y1="12" x2="20" y2="12"/><line class="vert-line" x1="12" y1="4" x2="12" y2="20"/></svg></span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Due to the volume of correspondence received, autograph and fan mail requests may not always be accommodated. Official announcements regarding public appearances, concerts, and signing opportunities are typically communicated through authorized organizations and event partners.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Where can I listen to John Williams' music?</span>
+                    <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><line x1="4" y1="12" x2="20" y2="12"/><line class="vert-line" x1="12" y1="4" x2="12" y2="20"/></svg></span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>John Williams' compositions are available through major music streaming platforms, physical releases, concert recordings, and official soundtrack albums. Many of his most celebrated works can also be experienced through live orchestral performances around the world.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Does John Williams still compose new music?</span>
+                    <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><line x1="4" y1="12" x2="20" y2="12"/><line class="vert-line" x1="12" y1="4" x2="12" y2="20"/></svg></span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Yes. Even after decades of groundbreaking work in film music, John Williams has continued composing for select projects, concert works, and special commissions. Recent projects include music for major motion pictures and orchestral performances.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What are John Williams' most famous film scores?</span>
+                    <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><line x1="4" y1="12" x2="20" y2="12"/><line class="vert-line" x1="12" y1="4" x2="12" y2="20"/></svg></span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Some of John Williams' most recognized scores include:<br><br>Star Wars, Indiana Jones, Jurassic Park, Harry Potter, E.T. the Extra-Terrestrial, Jaws, Superman, Schindler's List, Home Alone and Close Encounters of the Third Kind<br><br>These works have become some of the most iconic pieces of film music ever written.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Has John Williams won any Academy Awards?</span>
+                    <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><line x1="4" y1="12" x2="20" y2="12"/><line class="vert-line" x1="12" y1="4" x2="12" y2="20"/></svg></span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Yes. John Williams is one of the most awarded and nominated composers in film history. Throughout his career, he has received multiple Academy Awards and has accumulated more Oscar nominations than almost any living individual in the entertainment industry.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Does John Williams conduct his own music?</span>
+                    <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><line x1="4" y1="12" x2="20" y2="12"/><line class="vert-line" x1="12" y1="4" x2="12" y2="20"/></svg></span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>John Williams has frequently conducted performances of his own compositions with leading orchestras around the world, including long-standing collaborations with major symphony orchestras and special concert events dedicated to his music.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I perform or record a John Williams composition?</span>
+                    <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><line x1="4" y1="12" x2="20" y2="12"/><line class="vert-line" x1="12" y1="4" x2="12" y2="20"/></svg></span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Performance and recording rights depend on the specific work and intended use. Appropriate licenses may be required through music publishers, rights organizations, or copyright holders before recording, distributing, or publicly performing copyrighted material.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Does John Williams write concert music in addition to film scores?</span>
+                    <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><line x1="4" y1="12" x2="20" y2="12"/><line class="vert-line" x1="12" y1="4" x2="12" y2="20"/></svg></span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Yes. In addition to his work for film and television, John Williams has composed numerous concert works, including symphonies, concertos, fanfares, chamber music, and pieces commissioned for major orchestras and solo performers.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What orchestras has John Williams worked with?</span>
+                    <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><line x1="4" y1="12" x2="20" y2="12"/><line class="vert-line" x1="12" y1="4" x2="12" y2="20"/></svg></span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Throughout his career, John Williams has collaborated with many of the world's most prestigious orchestras, including:<br><br>Boston Pops Orchestra<br>Boston Symphony Orchestra<br>Vienna Philharmonic<br>London Symphony Orchestra<br>Los Angeles Philharmonic<br><br>and numerous ensembles across Europe, North America, and Asia.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Where can I find upcoming concerts featuring John Williams' music?</span>
+                    <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><line x1="4" y1="12" x2="20" y2="12"/><line class="vert-line" x1="12" y1="4" x2="12" y2="20"/></svg></span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Upcoming performances can often be found through official orchestra websites, concert venues, film music festivals, and special events dedicated to the music of John Williams. Programs frequently feature selections from Star Wars, Harry Potter, Indiana Jones, and many other celebrated scores.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="height: 10vh;"></div>
+        </div>
+    </main>
+
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Page Intro Transition
+        const pageTl = gsap.timeline();
+        const hideElements = [".header", ".faq-subtitle", ".faq-list"];
+        const titleEl = document.querySelector(".faq-title");
+        
+        if (titleEl) {
+            // 1. Hide everything else
+            gsap.set(hideElements, { opacity: 0 });
+            
+            // 2. Split text preserving HTML (for spans/svgs inside)
+            const childNodes = Array.from(titleEl.childNodes);
+            titleEl.innerHTML = '';
+            childNodes.forEach(node => {
+                if (node.nodeType === 3) {
+                    const chars = node.nodeValue.split('');
+                    chars.forEach(char => {
+                        if (char.trim() === '') {
+                            titleEl.appendChild(document.createTextNode(char));
+                        } else {
+                            const span = document.createElement('span');
+                            span.style.display = 'inline-block';
+                            span.className = 'title-char';
+                            span.textContent = char;
+                            titleEl.appendChild(span);
+                        }
+                    });
+                } else if (node.nodeType === 1) {
+                    node.style.display = 'inline-block';
+                    node.classList.add('title-char');
+                    titleEl.appendChild(node);
+                }
+            });
+
+            // 3. Set initial center position for the whole title container
+            gsap.set(titleEl, { y: "15vh", perspective: 800 });
+            
+            // 4. Animate characters thrown in and snapping upright
+            pageTl.from(".title-char", {
+                duration: 0.9,
+                opacity: 0,
+                scale: 1.5,
+                x: () => gsap.utils.random(-150, 150),
+                y: () => gsap.utils.random(-100, 200),
+                z: () => gsap.utils.random(100, 300),
+                rotationX: () => gsap.utils.random(70, 110), // laid flat
+                rotationY: () => gsap.utils.random(-45, 45),
+                rotationZ: () => gsap.utils.random(-45, 45),
+                stagger: 0.08,
+                ease: "back.out(2.5)" // snaps upright quickly
+            })
+            // 5. Move title up to original position
+            .to(titleEl, {
+                y: 0, 
+                duration: 1.2, 
+                ease: "power3.inOut"
+            }, "+=0.3")
+            // 6. Fade in content
+            .to(hideElements, {
+                opacity: 1, duration: 1.2, stagger: 0.1, ease: "power2.out"
+            }, "-=0.6");
+        }
+    
+        // Hamburger Menu Logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuOverlay = document.querySelector('.menu-overlay');
+
+        menuToggle.addEventListener('click', () => {
+            menuOverlay.classList.toggle('open');
+            document.body.classList.toggle('menu-active');
+        });
+
+        // News Sidebar Logic
+        const newsBtn = document.getElementById('news-btn');
+        const newsSidebar = document.getElementById('news-sidebar');
+        const newsClose = document.getElementById('news-close');
+
+        const newsBtnSvg = newsBtn.querySelector('svg');
+        gsap.set(newsBtnSvg, { transformOrigin: "50% 10%" });
+        
+        const ringBellAnim = () => {
+            if (gsap.isTweening(newsBtnSvg)) return;
+            gsap.fromTo(newsBtnSvg, 
+                { rotation: 25 }, 
+                { rotation: 0, duration: 1.5, ease: "elastic.out(1.5, 0.2)", clearProps: "rotation" }
+            );
+        };
+        
+        newsBtn.addEventListener('mouseenter', ringBellAnim);
+
+        newsBtn.addEventListener('click', () => {
+            ringBellAnim();
+            newsSidebar.classList.add('open');
+            document.body.classList.add('news-active');
+        });
+
+        newsClose.addEventListener('click', () => {
+            newsSidebar.classList.remove('open');
+            document.body.classList.remove('news-active');
+        });
+        
+        // FAQ Accordion Logic
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all others
+                faqItems.forEach(otherItem => {
+                    if(otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                        gsap.to(otherItem.querySelector('.faq-answer'), {
+                            height: 0,
+                            opacity: 0,
+                            duration: 0.4,
+                            ease: "power2.inOut"
+                        });
+                    }
+                });
+                
+                // Toggle current
+                if (isActive) {
+                    item.classList.remove('active');
+                    gsap.to(answer, {
+                        height: 0,
+                        opacity: 0,
+                        duration: 0.4,
+                        ease: "power2.inOut"
+                    });
+                } else {
+                    item.classList.add('active');
+                    gsap.set(answer, { height: "auto" });
+                    const targetHeight = answer.offsetHeight;
+                    gsap.set(answer, { height: 0 });
+                    
+                    gsap.to(answer, {
+                        height: targetHeight,
+                        opacity: 1,
+                        duration: 0.5,
+                        ease: "power3.out"
+                    });
+                }
+            });
+        });
+        
+        // FAQ Scroll Animation (Hentak)
+        gsap.registerPlugin(ScrollTrigger);
+        
+        gsap.utils.toArray('.faq-item').forEach((item, i) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 90%", // Trigger when top of element reaches 90% of viewport
+                    toggleActions: "play none none reverse" // Play on scroll down, reverse on scroll up past start
+                },
+                y: 60,
+                opacity: 0,
+                duration: 0.8,
+                ease: "back.out(2.5)" // The 'hentak' / bounce effect
+            });
+        });
+        
+        // (Duplicate logo hide logic removed to prevent conflicts)
+    });
+    </script>
+
+    <!-- Global Logo Scroll Logic -->
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const logoEl = document.querySelector('.logo-text');
+        if (!logoEl) return;
+        
+        let isLogoHiddenFlag = false;
+        
+        function checkLogoVisibility() {
+            let totalScroll = 0;
+            const sc = document.querySelector('.work-scroll-container');
+            const wl = document.querySelector('.work-list');
+            
+            if (sc) totalScroll += sc.scrollTop;
+            if (wl) {
+                try {
+                    const yVal = (typeof gsap !== 'undefined') ? gsap.getProperty(wl, "y") : 0;
+                    totalScroll += Math.abs(parseFloat(yVal) || 0);
+                } catch(e) {}
+            }
+            totalScroll += window.scrollY || document.documentElement.scrollTop || 0;
+            
+            if (totalScroll > 50 && !isLogoHiddenFlag) {
+                isLogoHiddenFlag = true;
+                logoEl.classList.add('hidden-logo');
+            } else if (totalScroll <= 50 && isLogoHiddenFlag) {
+                isLogoHiddenFlag = false;
+                logoEl.classList.remove('hidden-logo');
+            }
+            
+            requestAnimationFrame(checkLogoVisibility);
+        }
+        
+        requestAnimationFrame(checkLogoVisibility);
+    });
+    </script>
+
+</body>
+
+</html>
