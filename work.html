@@ -1,0 +1,2264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Williams - Featured Work</title>
+
+    
+    <!-- Local Fonts -->
+    <style>
+        @font-face {
+            font-family: 'Clearface';
+            src: url('assets/fonts/ClearfaceStd-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Clearface';
+            src: url('assets/fonts/ClearfaceStd-Italic.woff2') format('woff2');
+            font-weight: 400;
+            font-style: italic;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Clearface';
+            src: url('assets/fonts/ClearfaceStd-Bold.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Graphik';
+            src: url('assets/fonts/Graphik-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Graphik';
+            src: url('assets/fonts/Graphik-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Disney Script';
+            src: url('assets/fonts/Walt-Disney-Script-v41.ttf.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Desire';
+            src: url('assets/fonts/Desire.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Lust Script';
+            src: url('assets/fonts/lust-script-regular.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Bickham Script Pro';
+            src: url('assets/fonts/Bickham Script Pro Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
+
+
+    <style>
+        :root {
+            --bg-color: #EBE8E0;
+            --text-color: #1a1a1a;
+            --easing: cubic-bezier(0.77, 0, 0.175, 1);
+            --easing-soft: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .swash {
+            display: inline-block;
+            transform-style: preserve-3d;
+            transition: none; /* Let GSAP handle it */
+        }
+
+        .hover-char {
+            display: inline-block;
+            transform-style: preserve-3d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body,
+        html {
+            background-color: var(--bg-color);
+            background-image: url('https://res.cloudinary.com/dir57w3tf/image/upload/vintage_90s_bg_qvydjd.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: var(--text-color);
+            font-family: 'Clearface', serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Vignette and Retro Film Feel */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -1;
+            /* Radial gradient vignette */
+            background: radial-gradient(circle at center, transparent 30%, rgba(60, 40, 20, 0.15) 100%);
+            mix-blend-mode: multiply;
+        }
+
+        /* Menu Overlay (Dropdown Navigation) */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 42vh;
+            background-color: #111111;
+            z-index: 90;
+            transform: translateY(-100%);
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding-bottom: 4rem;
+            will-change: transform;
+        }
+
+        /* Fine Film Grain on Menu Overlay */
+        .menu-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.18;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .menu-overlay.open {
+            transform: translateY(0);
+        }
+
+        .menu-nav {
+            position: relative;
+            z-index: 1;
+            /* Di atas noise */
+            display: flex;
+            gap: 5rem;
+            align-items: baseline;
+        }
+
+        .menu-link {
+            font-family: 'Clearface', serif;
+            font-size: 2.8rem;
+            color: #555;
+            text-decoration: none;
+            transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+            opacity: 0;
+            transform: translateY(20px);
+            cursor: pointer;
+        }
+
+        .menu-link.active {
+            color: #EBE8E0;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        /* Animasi staggered masuk ketika menu terbuka */
+        .menu-overlay.open .menu-link {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .menu-overlay.open .menu-link:nth-child(1) {
+            transition-delay: 0.3s;
+        }
+
+        .menu-overlay.open .menu-link:nth-child(2) {
+            transition-delay: 0.4s;
+        }
+
+        .menu-overlay.open .menu-link:nth-child(3) {
+            transition-delay: 0.5s;
+        }
+
+        .menu-overlay.open .menu-link:nth-child(4) {
+            transition-delay: 0.6s;
+        }
+
+        .menu-overlay.open .menu-link:nth-child(5) {
+            transition-delay: 0.7s;
+        }
+
+        .menu-overlay:not(.open) .menu-link {
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            transition-delay: 0s;
+        }
+
+        /* Header dengan Efek Mix-Blend-Mode */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            color: #ffffff;
+            mix-blend-mode: difference;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .icon-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .icon-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+        }
+
+        #menu-toggle svg rect {
+            transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        #menu-toggle svg rect:nth-child(2) {
+            transform: translateY(-5px);
+        }
+
+        #menu-toggle:hover svg rect:nth-child(1),
+        #menu-toggle:hover svg rect:nth-child(3),
+        body.menu-active #menu-toggle svg rect:nth-child(1),
+        body.menu-active #menu-toggle svg rect:nth-child(3) {
+            transform: translateY(-5px);
+        }
+
+        #menu-toggle:hover svg rect:nth-child(2),
+        body.menu-active #menu-toggle svg rect:nth-child(2) {
+            transform: translateY(5px);
+        }
+
+
+        .logo-text {
+            font-family: 'Disney Script', cursive;
+            font-size: 3.8rem;
+            font-weight: 400;
+            color: inherit;
+            line-height: 1;
+            transform: translateY(-15px) rotate(-2deg);
+            display: inline-block;
+            text-decoration: none;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .logo-text.hidden-logo {
+            opacity: 0 !important;
+            
+            transform: translateY(-50px) rotate(-2deg) !important;
+            pointer-events: none !important;
+        }
+
+        /* Main Content */
+        .main-content,
+        .footer {
+            transition: opacity 0.8s ease;
+        }
+
+        /* Hilangkan blur agar font tetap tajam, hanya turunkan opacity */
+        body.menu-active .main-content,
+        body.menu-active .footer {
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 3rem;
+            position: relative;
+        }
+
+        /* View Containers */
+        .view-gallery {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .view-single {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+        }
+
+        /* Single View Styles */
+        .single-gallery {
+            position: relative;
+            width: 55.5vw;
+            height: 70vh;
+        }
+
+        .single-slice {
+            position: absolute;
+            overflow: hidden;
+            left: var(--l);
+            top: var(--t);
+            height: var(--h);
+            width: var(--w, 7vw);
+            background-color: transparent;
+        }
+
+        .single-slice-img,
+        .single-slice-media {
+            position: absolute;
+            left: calc(-1 * var(--l));
+            top: calc(-1 * var(--t));
+            width: 53.5vw;
+            height: 70vh;
+            object-fit: cover;
+        }
+
+        .single-slice-img {
+            filter: grayscale(100%) contrast(1.1) brightness(1.05) sepia(0.2);
+            mix-blend-mode: multiply;
+            z-index: 2;
+        }
+
+        .single-slice-media {
+            z-index: 3;
+        }
+
+        .dark-box {
+            background-color: #1a1a1a;
+            color: #EBE8E0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 6;
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            overflow: visible !important;
+            height: max-content !important;
+            padding-bottom: 1.5rem;
+        }
+
+        .dark-box:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        .riverbend-text-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 1.5rem;
+        }
+
+        .riverbend-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-family: 'Clearface', serif;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            font-weight: 300;
+            font-style: italic;
+            margin-top: auto;
+            margin-bottom: 2rem;
+            white-space: nowrap;
+        }
+
+        .play-circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .play-circle:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .play-circle svg {
+            width: 10px;
+            height: 10px;
+            fill: currentColor;
+            margin-left: 2px;
+        }
+
+        /* Title Box */
+        .title-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+            z-index: 4;
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            cursor: pointer;
+            overflow: visible !important;
+        }
+
+        .title-box:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .vertical-title-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .vertical-title {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-family: 'Clearface', serif;
+            font-size: 7.5vh;
+            font-weight: 400;
+            letter-spacing: normal;
+            word-spacing: normal;
+            color: #1a1a1a;
+            line-height: 0.95;
+            text-align: center;
+        }
+
+        .title-signature {
+            font-family: 'Disney Script', cursive;
+            font-size: clamp(2.5rem, 3.5vh, 3.5rem);
+            color: #1a1a1a;
+            position: absolute;
+            bottom: -2rem;
+            left: 50%;
+            transform: translateX(-50%) rotate(-10deg);
+        }
+
+        .explore-text {
+            font-family: 'Graphik', sans-serif;
+            font-size: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            text-align: center;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #1a1a1a;
+            width: 15vw;
+            white-space: nowrap;
+            margin-bottom: 6vh;
+        }
+
+        /* Side Navigation */
+        .side-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .left-nav {
+            left: 4rem;
+        }
+
+        .right-nav {
+            right: 4rem;
+        }
+
+        .nav-text {
+            font-family: 'Graphik', sans-serif;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            text-align: center;
+            color: #555;
+            font-weight: 400;
+            line-height: 1.4;
+            transition: color 0.3s;
+        }
+
+        .side-nav:hover .nav-text {
+            color: #1a1a1a;
+        }
+
+        .nav-arrow {
+            width: 30px;
+            height: 30px;
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-arrow svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Gallery */
+        .gallery-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 52vh;
+        }
+
+        .gallery {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.1vw;
+            height: 100%;
+            width: 100%;
+            transition: transform 0.8s var(--easing);
+        }
+
+        /* 5 Kiri mengusap ke Kanan -> Menahan sisi kiri agar tetap diam (mendorong ke kanan saja) */
+        .gallery:has(.col:nth-child(-n+5):hover) {
+            transform: translateX(4.75vw);
+        }
+
+        /* 5 Kanan mengusap ke Kiri -> Menahan sisi kanan agar tetap diam (mendorong ke kiri saja) */
+        .gallery:has(.col:nth-child(n+6):hover) {
+            transform: translateX(-4.75vw);
+        }
+
+        .col {
+            width: 5.5vw;
+            position: relative;
+            border-radius: 1px;
+            overflow: hidden;
+            cursor: pointer;
+            background-color: transparent;
+            opacity: 0.25;
+            /* Faded by default */
+            transition: width 0.8s var(--easing),
+                height 0.8s var(--easing),
+                top 0.8s var(--easing),
+                opacity 0.6s var(--easing-soft),
+                filter 0.6s var(--easing-soft),
+                transform 0.6s var(--easing-soft);
+        }
+
+        /* Accurate Heights & Vertical Alignments */
+        .col:nth-child(1) {
+            height: 92%;
+            top: 0%;
+        }
+
+        .col:nth-child(2) {
+            height: 92%;
+            top: 4%;
+        }
+
+        .col:nth-child(3) {
+            height: 92%;
+            top: 2%;
+        }
+
+        .col:nth-child(4) {
+            height: 92%;
+            top: -3%;
+        }
+
+        .col:nth-child(5) {
+            height: 92%;
+            top: -6%;
+        }
+
+        .col:nth-child(6) {
+            height: 92%;
+            top: 6%;
+        }
+
+        .col:nth-child(7) {
+            height: 92%;
+            top: -1%;
+        }
+
+        .col:nth-child(8) {
+            height: 92%;
+            top: 1%;
+        }
+
+        .col:nth-child(9) {
+            height: 92%;
+            top: -4%;
+        }
+
+        .col:nth-child(10) {
+            height: 92%;
+            top: 3%;
+        }
+
+        .gallery:hover .col:not(:hover) {
+            opacity: 0.15;
+            filter: grayscale(100%) brightness(0.8);
+            transform: scale(0.98);
+        }
+
+        .col:hover {
+            width: 15vw;
+            opacity: 1 !important;
+            z-index: 10;
+        }
+
+        .col img,
+        .col video {
+            position: absolute;
+            top: 0;
+            width: 15vw;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .col img {
+            filter: grayscale(100%) contrast(1.1) brightness(1.05) sepia(0.2);
+            mix-blend-mode: multiply;
+            z-index: 2;
+        }
+
+        .col video {
+            z-index: 3;
+            transition: clip-path 0.8s var(--easing);
+        }
+
+        /* 5 Gambar Kiri: Jangkar Kiri, Video Mengusap Kanan */
+        .col:nth-child(-n+5) img,
+        .col:nth-child(-n+5) video {
+            left: 0;
+        }
+
+        .col:nth-child(-n+5) video {
+            clip-path: inset(0 100% 0 0);
+        }
+
+        /* 5 Gambar Kanan: Jangkar Kanan, Video Mengusap Kiri */
+        .col:nth-child(n+6) img,
+        .col:nth-child(n+6) video {
+            right: 0;
+        }
+
+        .col:nth-child(n+6) video {
+            clip-path: inset(0 0 0 100%);
+        }
+
+        .col:hover video {
+            clip-path: inset(0 0 0 0);
+        }
+
+        /* Featured Text & Dynamic Content */
+        .featured-text-wrapper {
+            height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .featured-text {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .featured-text h2 {
+            font-family: 'Clearface', serif;
+            font-size: 4.8rem;
+            font-style: italic;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        .star-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tiny-star {
+            position: absolute;
+            top: -0.1em;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0.25em;
+            height: 0.25em;
+            fill: currentColor;
+        }
+
+        .featured-text p.subtitle {
+            font-family: 'Graphik', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.2rem;
+            font-weight: 400;
+            color: #444;
+        }
+
+        .featured-text p.desc {
+            font-family: 'Graphik', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-top: 0.4rem;
+            font-weight: 400;
+            color: #333;
+        }
+
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            cursor: pointer;
+        }
+
+        .footer-left span {
+            font-family: 'Graphik', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        .footer-controls {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .play-btn {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease, border 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .play-btn::after {
+            content: '';
+            width: 18px;
+            height: 12px;
+            background-color: var(--text-color);
+            border-radius: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .play-btn:hover,
+        .play-btn.active {
+            background-color: #e4e1d8;
+            border: 1px solid var(--text-color);
+            transform: scale(1.05);
+        }
+
+        .play-btn:hover::after,
+        .play-btn.active::after {
+            transform: scale(1.1);
+        }
+
+        .list-btn {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            position: relative;
+            background: transparent;
+            border: 1px solid transparent;
+        }
+
+        .list-btn.active {
+            background-color: #e4e1d8;
+            border: 1px solid var(--text-color);
+        }
+
+        .list-btn::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 1px;
+            right: 3px;
+            bottom: 0px;
+            border: 1.2px solid var(--text-color);
+            border-radius: 50% 55% 45% 50%;
+            transform: rotate(-15deg);
+        }
+
+        .list-btn::after {
+            content: '';
+            position: absolute;
+            top: 0px;
+            left: 3px;
+            right: -1px;
+            bottom: 3px;
+            border: 1px solid var(--text-color);
+            border-radius: 45% 50% 55% 50%;
+            transform: rotate(35deg);
+        }
+
+        .list-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .list-line {
+            width: 4px;
+            height: 15px;
+            background-color: var(--text-color);
+            border-radius: 2px;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .list-btn:hover .list-line:nth-child(even) {
+            transform: scaleY(0.8);
+        }
+
+        .list-btn:hover .list-line:nth-child(odd) {
+            transform: scaleY(1.2);
+        }
+
+        .footer-right {
+            width: 100px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .gallery {
+                gap: 1.5vw;
+            }
+
+            .col {
+                width: 8vw;
+            }
+
+            .featured-text h2 {
+                font-size: 4rem;
+            }
+
+            .menu-nav {
+                gap: 3rem;
+            }
+
+            .menu-link {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-overlay {
+                height: 100vh;
+                align-items: center;
+                padding-bottom: 0;
+            }
+
+            .menu-nav {
+                flex-direction: column;
+                gap: 1.5rem;
+                align-items: center;
+            }
+
+            .gallery-wrapper {
+                height: 40vh;
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding: 0 2rem;
+            }
+
+            .gallery {
+                width: auto;
+                justify-content: flex-start;
+                gap: 1rem;
+            }
+
+            .col {
+                width: 15vw;
+                flex-shrink: 0;
+            }
+
+            .featured-text h2 {
+                font-size: 3rem;
+            }
+
+            .header,
+            .footer {
+                padding: 1.5rem 2rem;
+            }
+
+            .logo-text {
+                font-size: 3.8rem;
+            }
+        }
+
+        /* Intro Screen */
+        #intro-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #000000;
+            color: #EBE8E0;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Clearface', serif;
+        }
+
+        #intro-screen::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.15;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .intro-sound {
+            position: absolute;
+            top: 10%;
+            font-size: 1.1rem;
+            color: rgba(235, 232, 224, 0.6);
+            letter-spacing: 0.05em;
+            z-index: 1;
+        }
+
+        .intro-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .intro-signature {
+            font-family: 'Disney Script', cursive;
+            font-size: 10rem;
+            font-weight: 400;
+            line-height: 0.8;
+            margin-bottom: 2.5rem;
+            color: #EBE8E0;
+            transform: rotate(-3deg);
+        }
+
+        .intro-desc {
+            font-size: 1.45rem;
+            text-align: center;
+            line-height: 1.4;
+            color: rgba(235, 232, 224, 0.7);
+            letter-spacing: 0.02em;
+        }
+
+        .intro-enter {
+            position: absolute;
+            bottom: 15%;
+            font-size: 1.1rem;
+            color: #EBE8E0;
+            cursor: pointer;
+            z-index: 1;
+            padding-bottom: 4px;
+            border-bottom: 1px solid rgba(235, 232, 224, 0.5);
+            transition: border-color 0.3s ease, color 0.3s ease;
+            letter-spacing: 0.05em;
+        }
+
+        .intro-enter:hover {
+            color: #fff;
+            border-bottom: 1px solid #fff;
+        }
+
+        /* News Sidebar */
+        .news-sidebar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 380px;
+            max-width: 90vw;
+            height: 100vh;
+            background-color: #000;
+            z-index: 10000;
+            display: flex;
+            transform: translateX(-100%);
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+            color: #EBE8E0;
+            border-right: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .news-sidebar.open {
+            transform: translateX(0);
+        }
+
+        .news-sidebar-left {
+            width: 55px;
+            height: 100%;
+            border-right: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 2.2rem;
+            padding-bottom: 4rem;
+        }
+
+        .news-sidebar-left-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .news-follow-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-family: 'Graphik', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            font-weight: 400;
+            color: rgba(235, 232, 224, 0.4);
+            margin-bottom: 2rem;
+        }
+
+        .news-socials {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .news-socials a {
+            color: rgba(235, 232, 224, 0.8);
+            transition: color 0.3s, transform 0.3s;
+            display: flex;
+            justify-content: center;
+        }
+
+        .news-socials a:hover {
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .news-socials svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        .news-sidebar-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .news-header {
+            padding: 2.5rem 1.8rem 1rem 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .news-close-btn {
+            background: none;
+            border: none;
+            color: #EBE8E0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .news-close-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .news-close-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .news-title {
+            font-family: 'Clearface', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.02em;
+        }
+
+        .star-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .star-wrapper .tiny-star {
+            position: absolute;
+            top: -0.1em;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0.25em;
+            height: 0.25em;
+            fill: currentColor;
+        }
+
+        .news-feed {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0 1.8rem 4rem 1.8rem;
+        }
+
+        .news-feed::-webkit-scrollbar {
+            width: 4px;
+        }
+        .news-feed::-webkit-scrollbar-thumb {
+            background-color: rgba(255,255,255,0.15);
+            border-radius: 4px;
+        }
+
+        .news-item {
+            padding: 2.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            margin-bottom: 1.2rem;
+            border-radius: 2px;
+        }
+
+        .news-item h3 {
+            font-family: 'Clearface', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 0.8rem;
+            color: #EBE8E0;
+        }
+
+        .news-item p {
+            font-family: 'Clearface', serif;
+            font-size: 1.05rem;
+            line-height: 1.4;
+            color: rgba(235, 232, 224, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .news-item p:last-child {
+            margin-bottom: 0;
+        }
+
+        .news-link {
+            font-family: 'Graphik', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #EBE8E0;
+            text-decoration: none;
+            display: inline-block;
+            transition: opacity 0.3s;
+        }
+
+        .news-link:hover {
+            opacity: 0.6;
+        }
+
+        /* Background dimming */
+        body.news-active .main-content,
+        body.news-active .footer,
+        body.news-active .header {
+            opacity: 0.15;
+            pointer-events: none;
+            transform: translateX(4vw);
+            transition: opacity 0.8s var(--easing), transform 0.8s var(--easing);
+        }
+    
+        /* Work Page CSS */
+        .work-main {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #EBE8E0;
+        }
+
+        .work-bg-container {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+            overflow: hidden;
+            opacity: 0.25; /* highly brightened, so the background is faded */
+        }
+
+        .work-bg-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+        }
+
+        .work-scroll-container {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 2;
+            overflow-y: auto;
+        }
+
+        .work-scroll-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        .work-scroll-container::-webkit-scrollbar-thumb {
+            background-color: rgba(0,0,0,0.3);
+            border-radius: 4px;
+        }
+
+        .work-list {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 15vh;
+            padding-bottom: 15vh;
+            gap: 0.5rem;
+            max-width: 90vw;
+            margin: 0 auto;
+        }
+
+        .work-category {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 4rem 0 1rem 0;
+            padding: 1rem;
+            background-color: transparent;
+        }
+
+        .cat-title {
+            font-family: 'Clearface', serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.2em;
+            font-weight: 400;
+            color: #000;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .cat-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .cat-line {
+            width: 30px;
+            height: 1px;
+            background-color: #000;
+        }
+
+        .cat-icon {
+            width: 12px;
+            height: 12px;
+            fill: #000;
+        }
+
+        .work-title {
+            font-family: 'Clearface', serif;
+            font-size: 2.8rem;
+            font-weight: 400;
+            color: #1a1a1a !important;
+            background-color: transparent;
+            padding: 0.2rem 1rem;
+            margin: 0;
+            cursor: pointer;
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease, color 0.4s ease;
+            text-align: center;
+            opacity: 0.4;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .work-title.active,
+        .work-title:hover {
+            opacity: 1;
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .char {
+            display: inline-block;
+        }
+
+        .hover-char {
+            display: inline-block;
+        }
+
+        .swash {
+            display: inline-block;
+            transform-style: preserve-3d;
+            transition: none;
+        }
+
+</style>
+</head>
+
+<body>
+    
+    </div>
+
+    <!-- Menu Dropdown -->
+    <div class="menu-overlay">
+        <nav class="menu-nav">
+            <a href="index.html" class="menu-link">Hom<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span></a>
+            <a href="work.html" class="menu-link active">Work</a>
+            <a href="biography.html" class="menu-link">Biography</a>
+            <a href="awards.html" class="menu-link">Awards</a>
+            <a href="faq.html" class="menu-link">FAQ</a>
+        </nav>
+    </div>
+
+    <!-- News Sidebar -->
+    <div id="news-sidebar" class="news-sidebar">
+        <div class="news-sidebar-left">
+            <button class="news-close-btn" id="news-close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M18 6L6 18M6 6l12 12"></path>
+                </svg>
+            </button>
+            <div class="news-sidebar-left-bottom">
+                <div class="news-follow-text">FOLLOW ALAN</div>
+                <div class="news-socials">
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.05c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/></svg></a>
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7v-7H9.5v-2.5H12V9c0-2.5 1.5-3.87 3.75-3.87 1.07 0 2 .08 2.27.12v2.63l-1.56.01c-1.22 0-1.46.58-1.46 1.43v1.88h2.9l-.38 2.5h-2.52V21h4.94a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/></svg></a>
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.22.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.22-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.22-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.05-.41-2.22-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.22.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.05-.36 2.22-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.77.13 4.9.33 4.14.63c-.8.3-1.47.73-2.14 1.4-.67.67-1.1 1.34-1.4 2.14-.3.76-.5 1.63-.56 2.91C0 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.28.26 2.15.56 2.91.3.8.73 1.47 1.4 2.14.67.67 1.34 1.1 2.14 1.4.76.3 1.63.5 2.91.56C8.33 24 8.74 24 12 24s3.67-.01 4.95-.07c1.28-.06 2.15-.26 2.91-.56.8-.3 1.47-.73 2.14-1.4.67-.67 1.1-1.34 1.4-2.14.3-.76.5-1.63.56-2.91C23.99 15.67 24 15.26 24 12s-.01-3.67-.07-4.95c-.06-1.28-.26-2.15-.56-2.91-.3-.8-.73-1.47-1.4-2.14-.67-.67-1.34-1.1-2.14-1.4-.76-.3-1.63-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm5.8-9.26a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg></a>
+                </div>
+            </div>
+        </div>
+        <div class="news-sidebar-content">
+            <div class="news-header">
+                <h2 class="news-title">Wh<span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>t's H<span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>ppening</h2>
+            </div>
+            
+            <div class="news-feed">
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news1/600/600" alt="News Image" class="news-img">
+                    <h3>Original London Cast Recording Released</h3>
+                    <p>The Hercules Original London Cast Recording is set to be released on 10th of October for digital download and streaming, 21st of November on CD and 5th of December on Vinyl.</p>
+                </div>
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news2/600/400" alt="News Image" class="news-img">
+                    <h3>"Aladdin" on Broadway celebrates 4,000 performances</h3>
+                    <p>The beloved musical reaches a historic milestone, honoring the late Howard Ashman.</p>
+                    <a href="#" class="news-link">READ MORE</a>
+                </div>
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news3/600/400" alt="News Image" class="news-img">
+                    <h3>Little Shop of Horrors Returns</h3>
+                    <p>The cult classic revival continues its acclaimed run off-Broadway starring new cast members.</p>
+                    <a href="#" class="news-link">WATCH THE COMPLETE PERFORMANCE HERE</a>
+                </div>
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news4/600/400" alt="News Image" class="news-img">
+                    <h3>Tangled Stage Musical Announced</h3>
+                    <p>John Williams returns to compose new songs for the upcoming theatrical adaptation of Tangled.</p>
+                    <a href="#" class="news-link">SEE DETAILS</a>
+                </div>
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news5/600/400" alt="News Image" class="news-img">
+                    <h3>Beauty and the Beast 30th Anniversary Concert</h3>
+                    <p>A special live-to-film concert event celebrating three decades of the timeless classic.</p>
+                    <a href="#" class="news-link">GET TICKETS</a>
+                </div>
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news6/600/400" alt="News Image" class="news-img">
+                    <h3>Pocahontas Soundtrack Remastered Release</h3>
+                    <p>Experience the Academy Award-winning score like never before on limited edition vinyl.</p>
+                    <a href="#" class="news-link">PRE-ORDER NOW</a>
+                </div>
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news7/600/400" alt="News Image" class="news-img">
+                    <h3>New Documentary: The Menken Magic</h3>
+                    <p>A behind-the-scenes look at the composer's prolific career and his lasting impact on modern musicals.</p>
+                    <a href="#" class="news-link">WATCH TRAILER</a>
+                </div>
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news8/600/400" alt="News Image" class="news-img">
+                    <h3>Newsies UK Tour Dates Revealed</h3>
+                    <p>The Tony-winning hit is hitting the road across the United Kingdom this fall.</p>
+                    <a href="#" class="news-link">TOUR DATES</a>
+                </div>
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news9/600/400" alt="News Image" class="news-img">
+                    <h3>Enchanted Live in Concert</h3>
+                    <p>A one-night-only spectacular featuring the original cast members performing the iconic songs.</p>
+                    <a href="#" class="news-link">BUY TICKETS</a>
+                </div>
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news10/600/400" alt="News Image" class="news-img">
+                    <h3>John Williams Receives Lifetime Achievement Award</h3>
+                    <p>Honoring a legendary career spanning film, television, and theater.</p>
+                    <a href="#" class="news-link">READ FULL STORY</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <button class="icon-btn" id="news-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2c-.8 0-1.5.7-1.5 1.5v.68c-2.83.48-5 2.94-5 6.07v5l-2.5 2.5v1h18v-1L18.5 15.25v-5c0-3.13-2.17-5.59-5-6.07V3.5C13.5 2.7 12.8 2 12 2zm-2 18c0 1.1.9 2 2 2s2-.9 2-2h-4z"/>
+            </svg>
+        </button>
+
+        <a href="#" class="logo-text">John Williams</a>
+
+        <button class="icon-btn" id="menu-toggle">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="overflow: visible;">
+                <rect x="5" y="2" width="2" height="20" rx="1"/>
+                <rect x="11" y="2" width="2" height="20" rx="1"/>
+                <rect x="17" y="2" width="2" height="20" rx="1"/>
+            </svg>
+        </button>
+    </header>
+
+    
+    <main class="work-main">
+        <div class="work-bg-container">
+            <img src="https://picsum.photos/seed/bg1/1920/1080" class="work-bg-img active" id="work-bg" alt="Background">
+        </div>
+        
+        <div class="work-scroll-container">
+            <div class="work-list">
+        <h1 class="work-page-title" style="font-family: 'Clearface', serif; font-size: 3.5rem; font-weight: 400; color: #000; text-align: center; margin-top: 4rem; z-index: 10;">W<span class="star-wrapper">o<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>rk</h1>
+                
+                <!-- Category 1 -->
+                <div class="work-category">
+                    <span class="cat-title">FEATURE FILM SCORES</span>
+                    <div class="cat-divider" style="margin-top: 5px;">
+                        <svg width="240" height="24" viewBox="0 0 240 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Left swooping curve -->
+                            <path d="M 20 12 C 50 12 70 16 100 8" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                            <!-- Music Note -->
+                            <path d="M 116 14.5 C 114 14.5 113 15.5 113 17 C 113 18.5 114.5 19.5 116 19.5 C 117.5 19.5 119 18.5 119 17 L 119 7 L 126 9 L 126 11 L 120.5 9.5 L 120.5 17 Z" fill="#000" />
+                            <!-- Right swooping curve -->
+                            <path d="M 140 8 C 170 16 190 12 220 12" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                                <h2 class="work-title active" data-bg="https://picsum.photos/seed/jw1/1920/1080"><span class="swash">S</span>t<span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>r <span class="swash">W</span><span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>r<span class="swash">s</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw2/1920/1080"><span class="swash">J</span>aw<span class="swash">s</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw3/1920/1080"><span class="swash">E</span>.T. <span class="swash">t</span>h<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span> <span class="swash">E</span>xtra-Terres<span class="swash">t</span>ria<span class="swash">l</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw4/1920/1080"><span class="swash">I</span>n<span class="swash">d</span>iana <span class="swash">J</span>one<span class="swash">s</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw5/1920/1080"><span class="swash">S</span>uperm<span class="swash">a</span><span class="swash">n</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw6/1920/1080"><span class="swash">C</span>lose <span class="swash">E</span>nco<span class="star-wrapper">u<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>nt<span class="swash">e</span>rs of <span class="swash">t</span>h<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span> <span class="swash">T</span>h<span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>rd <span class="swash">K</span><span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>n<span class="swash">d</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw7/1920/1080"><span class="swash">J</span>ura<span class="swash">s</span>sic <span class="swash">P</span><span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>r<span class="swash">k</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw8/1920/1080"><span class="swash">S</span>c<span class="swash">h</span>indler's <span class="swash">L</span>is<span class="swash">t</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw9/1920/1080"><span class="swash">S</span>av<span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>ng <span class="swash">P</span>r<span class="swash">i</span>v<span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>te <span class="swash">R</span>y<span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span><span class="swash">n</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw10/1920/1080"><span class="swash">M</span>e<span class="swash">m</span>o<span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>rs <span class="star-wrapper">o<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>f <span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span> <span class="swash">G</span>eish<span class="swash">a</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw11/1920/1080"><span class="swash">L</span><span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>n<span class="swash">c</span>ol<span class="swash">n</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw12/1920/1080"><span class="swash">T</span>h<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span> <span class="swash">F</span>abel<span class="swash">m</span>an<span class="swash">s</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw13/1920/1080"><span class="swash">I</span>ndi<span class="swash">a</span>na <span class="swash">J</span>ones <span class="swash">a</span>nd <span class="swash">t</span>h<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span> <span class="swash">D</span><span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>al <span class="star-wrapper">o<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>f <span class="swash">D</span>es<span class="swash">t</span>in<span class="swash">y</span></h2>
+
+                <!-- Category 2 -->
+                <div class="work-category">
+                    <span class="cat-title">SCIENCE FICTION & FANTASY</span>
+                    <div class="cat-divider" style="margin-top: 5px;">
+                        <svg width="240" height="24" viewBox="0 0 240 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 20 12 C 50 12 70 16 100 8" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M 116 14.5 C 114 14.5 113 15.5 113 17 C 113 18.5 114.5 19.5 116 19.5 C 117.5 19.5 119 18.5 119 17 L 119 7 L 126 9 L 126 11 L 120.5 9.5 L 120.5 17 Z" fill="#000" />
+                            <path d="M 140 8 C 170 16 190 12 220 12" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw14/1920/1080"><span class="swash">S</span>tar <span class="swash">W</span><span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>r<span class="swash">s</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw15/1920/1080"><span class="swash">T</span>h<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span> <span class="swash">E</span>mpire <span class="swash">S</span>t<span class="swash">r</span>ik<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>s <span class="swash">B</span>ac<span class="swash">k</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw16/1920/1080"><span class="swash">R</span>eturn <span class="star-wrapper">o<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>f <span class="swash">t</span>he <span class="swash">J</span>ed<span class="swash">i</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw17/1920/1080"><span class="swash">T</span>h<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span> <span class="swash">P</span>ha<span class="swash">n</span>tom <span class="swash">M</span>enac<span class="swash">e</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw18/1920/1080"><span class="swash">A</span>tt<span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>ck <span class="star-wrapper">o<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>f <span class="swash">t</span>h<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span> <span class="swash">C</span>lone<span class="swash">s</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw19/1920/1080"><span class="swash">R</span><span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>v<span class="swash">e</span>nge <span class="star-wrapper">o<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>f <span class="swash">t</span>he <span class="swash">S</span>it<span class="swash">h</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw20/1920/1080"><span class="swash">T</span>h<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span> <span class="swash">F</span>orce <span class="swash">A</span>w<span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>ke<span class="swash">n</span><span class="swash">s</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw21/1920/1080"><span class="swash">T</span>h<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span> <span class="swash">L</span><span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>st <span class="swash">J</span>ed<span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></spa<span class="swash">n</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw22/1920/1080"><span class="swash">T</span>he <span class="swash">R</span>ise of <span class="swash">S</span>kyw<span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>lk<span class="swash">e</span><span class="swash">r</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw23/1920/1080"><span class="swash">H</span><span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>rry <span class="swash">P</span><span class="star-wrapper">o<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>tter <span class="swash">a</span>nd <span class="swash">t</span>h<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span> <span class="swash">S</span><span class="star-wrapper">o<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>rcere<span class="swash">r</span>'s <span class="swash">S</span>ton<span class="swash">e</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw24/1920/1080"><span class="swash">H</span><span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>rry <span class="swash">P</span>ott<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>r <span class="swash">a</span>nd <span class="swash">t</span>he <span class="swash">C</span>ham<span class="swash">b</span><span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>r of <span class="swash">S</span><span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>c<span class="swash">r</span>et<span class="swash">s</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw25/1920/1080"><span class="swash">H</span>arry <span class="swash">P</span>otter <span class="swash">a</span>nd <span class="swash">t</span>he <span class="swash">P</span>r<span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>son<span class="swash">e</span>r <span class="star-wrapper">o<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>f <span class="swash">A</span>zka<span class="swash">b</span><span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span><span class="swash">n</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw26/1920/1080"><span class="swash">E</span>.<span class="swash">T</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw27/1920/1080"><span class="swash">C</span>l<span class="star-wrapper">o<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>se <span class="swash">E</span>ncount<span class="swash">e</span>rs <span class="star-wrapper">o<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>f <span class="swash">t</span>he <span class="swash">T</span>h<span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>rd <span class="swash">K</span>in<span class="swash">d</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw28/1920/1080"><span class="swash">A</span>.I. <span class="swash">A</span>r<span class="swash">t</span>if<span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>cial <span class="swash">I</span>ntel<span class="swash">l</span>igenc<span class="swash">e</span></h2>
+
+                <!-- Category 3 -->
+                <div class="work-category">
+                    <span class="cat-title">ADVENTURE FILMS</span>
+                    <div class="cat-divider" style="margin-top: 5px;">
+                        <svg width="240" height="24" viewBox="0 0 240 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 20 12 C 50 12 70 16 100 8" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M 116 14.5 C 114 14.5 113 15.5 113 17 C 113 18.5 114.5 19.5 116 19.5 C 117.5 19.5 119 18.5 119 17 L 119 7 L 126 9 L 126 11 L 120.5 9.5 L 120.5 17 Z" fill="#000" />
+                            <path d="M 140 8 C 170 16 190 12 220 12" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw29/1920/1080"><span class="swash">R</span>a<span class="swash">i</span>ders <span class="star-wrapper">o<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>f <span class="swash">t</span>he <span class="swash">L</span>ost <span class="swash">A</span>r<span class="swash">k</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw30/1920/1080"><span class="swash">T</span><span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>mple <span class="star-wrapper">o<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>f <span class="swash">D</span>oo<span class="swash">m</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw31/1920/1080"><span class="swash">L</span>ast <span class="swash">C</span>rusa<span class="swash">d</span><span class="swash">e</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw32/1920/1080"><span class="swash">K</span>i<span class="swash">n</span>gd<span class="star-wrapper">o<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>m of <span class="swash">t</span>he <span class="swash">C</span>r<span class="swash">y</span>st<span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>l <span class="swash">S</span>kul<span class="swash">l</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw33/1920/1080"><span class="swash">D</span><span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>al of <span class="swash">D</span><span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>s<span class="swash">t</span>in<span class="swash">y</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw34/1920/1080"><span class="swash">J</span>uras<span class="swash">s</span>ic <span class="swash">P</span>ar<span class="swash">k</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw35/1920/1080"><span class="swash">T</span>h<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span> <span class="swash">L</span>ost <span class="swash">W</span><span class="star-wrapper">o<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>rl<span class="swash">d</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw36/1920/1080"><span class="swash">T</span>inti<span class="swash">n</span></h2>
+
+                <!-- Category 4 -->
+                <div class="work-category">
+                    <span class="cat-title">HISTORICAL & DRAMATIC FILMS</span>
+                    <div class="cat-divider" style="margin-top: 5px;">
+                        <svg width="240" height="24" viewBox="0 0 240 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 20 12 C 50 12 70 16 100 8" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M 116 14.5 C 114 14.5 113 15.5 113 17 C 113 18.5 114.5 19.5 116 19.5 C 117.5 19.5 119 18.5 119 17 L 119 7 L 126 9 L 126 11 L 120.5 9.5 L 120.5 17 Z" fill="#000" />
+                            <path d="M 140 8 C 170 16 190 12 220 12" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw37/1920/1080"><span class="swash">S</span>ch<span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>nd<span class="swash">l</span>er's <span class="swash">L</span><span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>s<span class="swash">t</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw38/1920/1080"><span class="swash">S</span>aving <span class="swash">P</span>riva<span class="swash">t</span>e <span class="swash">R</span>y<span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span><span class="swash">n</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw39/1920/1080"><span class="swash">L</span>in<span class="swash">c</span>ol<span class="swash">n</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw40/1920/1080"><span class="swash">N</span>ix<span class="star-wrapper">o<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span><span class="swash">n</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw41/1920/1080"><span class="swash">M</span>un<span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>c<span class="swash">h</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw42/1920/1080"><span class="swash">A</span>mis<span class="swash">t</span>a<span class="swash">d</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw43/1920/1080"><span class="swash">T</span>h<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span> <span class="swash">B</span>ook <span class="swash">T</span>hie<span class="swash">f</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw44/1920/1080"><span class="swash">A</span>n<span class="swash">g</span><span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>la's <span class="swash">A</span>sh<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span><span class="swash">s</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw45/1920/1080"><span class="swash">W</span>ar <span class="swash">H</span>ors<span class="swash">e</span></h2>
+
+                <!-- Category 5 -->
+                <div class="work-category">
+                    <span class="cat-title">FAMILY & HOLIDAY CLASSICS</span>
+                    <div class="cat-divider" style="margin-top: 5px;">
+                        <svg width="240" height="24" viewBox="0 0 240 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 20 12 C 50 12 70 16 100 8" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M 116 14.5 C 114 14.5 113 15.5 113 17 C 113 18.5 114.5 19.5 116 19.5 C 117.5 19.5 119 18.5 119 17 L 119 7 L 126 9 L 126 11 L 120.5 9.5 L 120.5 17 Z" fill="#000" />
+                            <path d="M 140 8 C 170 16 190 12 220 12" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw46/1920/1080"><span class="swash">H</span><span class="star-wrapper">o<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>me <span class="swash">A</span>lon<span class="swash">e</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw47/1920/1080"><span class="swash">H</span><span class="star-wrapper">o<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>me <span class="swash">A</span>lon<span class="swash">e</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw48/1920/1080"><span class="swash">H</span>oo<span class="swash">k</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw49/1920/1080"><span class="swash">F</span><span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>r <span class="swash">a</span>nd <span class="swash">A</span>wa<span class="swash">y</span></h2>
+
+                <!-- Category 6 -->
+                <div class="work-category">
+                    <span class="cat-title">OLYMPIC & CEREMONIAL WORKS</span>
+                    <div class="cat-divider" style="margin-top: 5px;">
+                        <svg width="240" height="24" viewBox="0 0 240 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 20 12 C 50 12 70 16 100 8" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M 116 14.5 C 114 14.5 113 15.5 113 17 C 113 18.5 114.5 19.5 116 19.5 C 117.5 19.5 119 18.5 119 17 L 119 7 L 126 9 L 126 11 L 120.5 9.5 L 120.5 17 Z" fill="#000" />
+                            <path d="M 140 8 C 170 16 190 12 220 12" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw50/1920/1080"><span class="swash">O</span>ly<span class="swash">m</span>p<span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>c <span class="swash">F</span>a<span class="swash">n</span>fare <span class="swash">a</span>nd <span class="swash">T</span>hem<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></spa<span class="swash">n</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw51/1920/1080"><span class="swash">S</span><span class="star-wrapper">u<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>mmon <span class="swash">t</span>h<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span> <span class="swash">H</span>eroe<span class="swash">s</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw52/1920/1080"><span class="swash">C</span>all <span class="star-wrapper">o<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>f <span class="swash">t</span>he <span class="swash">C</span>h<span class="swash">a</span>mpion<span class="swash">s</span></h2>
+
+                <!-- Category 7 -->
+                <div class="work-category">
+                    <span class="cat-title">CONCERT WORKS</span>
+                    <div class="cat-divider" style="margin-top: 5px;">
+                        <svg width="240" height="24" viewBox="0 0 240 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 20 12 C 50 12 70 16 100 8" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M 116 14.5 C 114 14.5 113 15.5 113 17 C 113 18.5 114.5 19.5 116 19.5 C 117.5 19.5 119 18.5 119 17 L 119 7 L 126 9 L 126 11 L 120.5 9.5 L 120.5 17 Z" fill="#000" />
+                            <path d="M 140 8 C 170 16 190 12 220 12" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw53/1920/1080"><span class="swash">V</span>iol<span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>n <span class="swash">C</span>o<span class="swash">n</span>cert<span class="swash">o</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw54/1920/1080"><span class="swash">C</span>ello <span class="swash">C</span>onc<span class="swash">e</span>rt<span class="swash">o</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw55/1920/1080"><span class="swash">B</span><span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>ss<span class="swash">o</span>on <span class="swash">C</span>onc<span class="swash">e</span>rt<span class="swash">o</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw56/1920/1080"><span class="swash">H</span>orn <span class="swash">C</span>oncer<span class="swash">t</span><span class="star-wrapper">o<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></spa<span class="swash">n</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw57/1920/1080"><span class="swash">T</span><span class="star-wrapper">u<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>ba <span class="swash">C</span>oncer<span class="swash">t</span><span class="swash">o</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw58/1920/1080"><span class="swash">T</span>r<span class="swash">e</span><span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>Son<span class="swash">g</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw59/1920/1080"><span class="swash">S</span>oun<span class="swash">d</span>ing<span class="swash">s</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw60/1920/1080"><span class="swash">H</span><span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span><span class="swash">g</span>hwood's <span class="swash">G</span>hos<span class="swash">t</span></h2>
+
+                <!-- Category 8 -->
+                <div class="work-category">
+                    <span class="cat-title">COLLABORATIONS WITH STEVEN SPIELBERG</span>
+                    <div class="cat-divider" style="margin-top: 5px;">
+                        <svg width="240" height="24" viewBox="0 0 240 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 20 12 C 50 12 70 16 100 8" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M 116 14.5 C 114 14.5 113 15.5 113 17 C 113 18.5 114.5 19.5 116 19.5 C 117.5 19.5 119 18.5 119 17 L 119 7 L 126 9 L 126 11 L 120.5 9.5 L 120.5 17 Z" fill="#000" />
+                            <path d="M 140 8 C 170 16 190 12 220 12" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw61/1920/1080"><span class="swash">J</span><span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>w<span class="swash">s</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw62/1920/1080"><span class="swash">C</span>lose <span class="swash">E</span>nco<span class="star-wrapper">u<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>nt<span class="swash">e</span>r<span class="swash">s</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw63/1920/1080"><span class="swash">R</span><span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>id<span class="swash">e</span>rs of <span class="swash">t</span>he <span class="swash">L</span>ost <span class="swash">A</span>r<span class="swash">k</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw64/1920/1080"><span class="swash">E</span>.<span class="swash">T</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw65/1920/1080"><span class="swash">I</span>n<span class="swash">d</span>iana <span class="swash">J</span>ones <span class="swash">S</span><span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>rie<span class="swash">s</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw66/1920/1080"><span class="swash">J</span>ur<span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>s<span class="swash">s</span>ic <span class="swash">P</span><span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>r<span class="swash">k</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw67/1920/1080"><span class="swash">S</span>c<span class="swash">h</span><span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>ndler's <span class="swash">L</span><span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>s<span class="swash">t</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw68/1920/1080"><span class="swash">S</span><span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>ving <span class="swash">P</span>riva<span class="swash">t</span>e <span class="swash">R</span>ya<span class="swash">n</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw69/1920/1080"><span class="swash">M</span><span class="star-wrapper">u<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>nic<span class="swash">h</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw70/1920/1080"><span class="swash">L</span>inc<span class="swash">o</span>l<span class="swash">n</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw71/1920/1080"><span class="swash">T</span>he <span class="swash">F</span>a<span class="swash">b</span>elman<span class="swash">s</span></h2>
+
+                <!-- Category 9 -->
+                <div class="work-category">
+                    <span class="cat-title">ICONIC THEMES</span>
+                    <div class="cat-divider" style="margin-top: 5px;">
+                        <svg width="240" height="24" viewBox="0 0 240 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 20 12 C 50 12 70 16 100 8" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M 116 14.5 C 114 14.5 113 15.5 113 17 C 113 18.5 114.5 19.5 116 19.5 C 117.5 19.5 119 18.5 119 17 L 119 7 L 126 9 L 126 11 L 120.5 9.5 L 120.5 17 Z" fill="#000" />
+                            <path d="M 140 8 C 170 16 190 12 220 12" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw72/1920/1080"><span class="swash">M</span>a<span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>n <span class="swash">T</span><span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>tle (St<span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>r <span class="swash">W</span><span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>r<span class="swash">s</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw73/1920/1080"><span class="swash">T</span>h<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span> <span class="swash">I</span>mp<span class="swash">e</span>ri<span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>l <span class="swash">M</span><span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>rc<span class="swash">h</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw74/1920/1080"><span class="swash">P</span>ri<span class="swash">n</span>cess <span class="swash">L</span><span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>ia's <span class="swash">T</span>hem<span class="swash">e</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw75/1920/1080"><span class="swash">D</span>uel of <span class="swash">t</span>he <span class="swash">F</span>at<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span><span class="swash">s</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw76/1920/1080"><span class="swash">A</span>cross <span class="swash">t</span>h<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span> <span class="swash">S</span>tar<span class="swash">s</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw77/1920/1080"><span class="swash">H</span>ed<span class="swash">w</span>ig's <span class="swash">T</span>hem<span class="swash">e</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw78/1920/1080"><span class="swash">R</span>a<span class="swash">i</span>d<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>rs <span class="swash">M</span>arc<span class="swash">h</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw79/1920/1080"><span class="swash">T</span>hem<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span> <span class="swash">f</span>r<span class="star-wrapper">o<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>m <span class="swash">J</span>ura<span class="swash">s</span>sic <span class="swash">P</span><span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>r<span class="swash">k</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw80/1920/1080"><span class="swash">T</span>heme <span class="swash">f</span>r<span class="star-wrapper">o<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>m <span class="swash">S</span>ch<span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>ndl<span class="swash">e</span>r's <span class="swash">L</span><span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>s<span class="swash">t</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw81/1920/1080"><span class="swash">S</span><span class="star-wrapper">u<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>per<span class="swash">m</span>an <span class="swash">M</span>arc<span class="swash">h</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw82/1920/1080"><span class="swash">O</span>lymp<span class="swash">i</span>c <span class="swash">F</span>a<span class="swash">n</span>far<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span> <span class="swash">a</span>nd <span class="swash">T</span>h<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>m<span class="swash">e</span></h2>
+
+                <!-- Category 10 -->
+                <div class="work-category">
+                    <span class="cat-title">HONORS & LEGACY</span>
+                    <div class="cat-divider" style="margin-top: 5px;">
+                        <svg width="240" height="24" viewBox="0 0 240 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 20 12 C 50 12 70 16 100 8" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M 116 14.5 C 114 14.5 113 15.5 113 17 C 113 18.5 114.5 19.5 116 19.5 C 117.5 19.5 119 18.5 119 17 L 119 7 L 126 9 L 126 11 L 120.5 9.5 L 120.5 17 Z" fill="#000" />
+                            <path d="M 140 8 C 170 16 190 12 220 12" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw83/1920/1080"><span class="swash">A</span>cad<span class="swash">e</span>my <span class="swash">A</span>w<span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>rd<span class="swash">s</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw84/1920/1080"><span class="swash">G</span>r<span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>mmy <span class="swash">A</span>w<span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>rd<span class="swash">s</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw85/1920/1080"><span class="swash">E</span>mmy <span class="swash">A</span>w<span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>rd<span class="swash">s</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw86/1920/1080"><span class="swash">K</span>enn<span class="swash">e</span>dy <span class="swash">C</span>enter <span class="swash">H</span>onor<span class="swash">s</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw87/1920/1080"><span class="swash">A</span>FI <span class="swash">L</span><span class="star-wrapper">i<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>fe <span class="swash">A</span>chiev<span class="swash">e</span>ment <span class="swash">A</span>w<span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>r<span class="swash">d</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw88/1920/1080"><span class="swash">N</span>ati<span class="swash">o</span>nal <span class="swash">M</span>ed<span class="star-wrapper">a<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span>l of <span class="swash">A</span>rt<span class="swash">s</span></h2>
+                <h2 class="work-title" data-bg="https://picsum.photos/seed/jw89/1920/1080"><span class="swash">O</span>lymp<span class="swash">i</span>c <span class="swash">O</span>rd<span class="star-wrapper">e<svg class="tiny-star" viewBox="0 0 24 24"><path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" /></svg></span><span class="swash">r</span></h2>
+                
+                <div style="height: 30vh;"></div>
+
+            </div>
+        </div>
+    </main>
+
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Page Intro Transition
+        let currentBgAnim;
+        const bgImg = document.getElementById('work-bg');
+        
+        const pageTl = gsap.timeline();
+        const hideElements = [".header", ".work-category", ".work-title"];
+        const titleEl = document.querySelector(".work-page-title");
+        
+        if (titleEl) {
+            // 1. Hide everything else
+            gsap.set(hideElements, { opacity: 0 });
+            
+            // 2. Split text preserving HTML
+            const childNodes = Array.from(titleEl.childNodes);
+            titleEl.innerHTML = '';
+            childNodes.forEach(node => {
+                if (node.nodeType === 3) {
+                    const chars = node.nodeValue.split('');
+                    chars.forEach(char => {
+                        if (char.trim() === '') {
+                            titleEl.appendChild(document.createTextNode(char));
+                        } else {
+                            const span = document.createElement('span');
+                            span.style.display = 'inline-block';
+                            span.className = 'title-char';
+                            span.textContent = char;
+                            titleEl.appendChild(span);
+                        }
+                    });
+                } else if (node.nodeType === 1) {
+                    node.style.display = 'inline-block';
+                    node.classList.add('title-char');
+                    titleEl.appendChild(node);
+                }
+            });
+
+            // Preload Bickham Script font to ensure it's available instantly on hover
+            const preloadFont = document.createElement('div');
+            preloadFont.style.fontFamily = "'Bickham Script Pro', cursive";
+            preloadFont.style.position = 'absolute';
+            preloadFont.style.opacity = '0';
+            preloadFont.style.pointerEvents = 'none';
+            preloadFont.textContent = 'preload';
+            document.body.appendChild(preloadFont);
+
+            // Split .work-title for letter-by-letter hover color fill AND click interactions
+            document.querySelectorAll('.work-title').forEach(title => {
+                const titleChildNodes = Array.from(title.childNodes);
+                title.innerHTML = '';
+                titleChildNodes.forEach(node => {
+                    if (node.nodeType === 3) {
+                        const chars = node.nodeValue.split('');
+                        chars.forEach(char => {
+                            if (char === ' ') {
+                                title.appendChild(document.createTextNode('\u00A0')); // Use non-breaking space like the original code
+                            } else if (char.trim() !== '') {
+                                const span = document.createElement('span');
+                                span.className = 'hover-char char';
+                                span.style.display = 'inline-block';
+                                span.textContent = char;
+                                title.appendChild(span);
+                            }
+                        });
+                    } else if (node.nodeType === 1) {
+                        // Wrap the element in hover-char to isolate GSAP transforms
+                        const wrapper = document.createElement('span');
+                        wrapper.className = 'hover-char char';
+                        wrapper.style.display = 'inline-block';
+                        wrapper.style.transformStyle = 'preserve-3d';
+                        
+                        node.style.display = 'inline-block';
+                        wrapper.appendChild(node);
+                        title.appendChild(wrapper);
+                    }
+                });
+
+                const chars = title.querySelectorAll('.hover-char');
+                const swashes = title.querySelectorAll('.swash');
+
+                // INJECT ORNAMENTS
+                const shapes = [
+                    `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" fill="currentColor"/></svg>`, // Dot
+                    `<svg viewBox="0 0 24 24"><path d="M11 4h2v7h7v2h-7v7h-2v-7h-7v-2h7z" fill="currentColor"/></svg>`, // Plus
+                    `<svg viewBox="0 0 24 24"><path d="M12 2 L14 10 L22 12 L14 14 L12 22 L10 14 L2 12 L10 10 Z" fill="currentColor"/></svg>`, // Diamond-star
+                    `<svg viewBox="0 0 24 24"><path d="M12 0 C18 6, 20 12, 12 24 C4 12, 6 6, 12 0 Z" fill="currentColor"/></svg>` // Drop
+                ];
+                
+                swashes.forEach(swash => {
+                    swash.style.position = 'relative';
+                    const numOrnaments = Math.floor(Math.random() * 2) + 2; // 2 or 3
+                    for(let i=0; i<numOrnaments; i++) {
+                        const orn = document.createElement('span');
+                        orn.className = 'swash-ornament';
+                        orn.style.position = 'absolute';
+                        orn.style.display = 'inline-block';
+                        orn.style.width = '0.3em';
+                        orn.style.height = '0.3em';
+                        orn.style.opacity = '0';
+                        orn.style.pointerEvents = 'none';
+                        orn.style.color = '#333';
+                        orn.style.zIndex = '1';
+                        
+                        orn.innerHTML = shapes[Math.floor(Math.random() * shapes.length)];
+                        
+                        // Initial position (center of swash)
+                        orn.style.top = '50%';
+                        orn.style.left = '50%';
+                        orn.style.transform = 'translate(-50%, -50%) scale(0)';
+                        
+                        swash.appendChild(orn);
+                    }
+                });
+
+                let hoverTimeouts = [];
+
+                // Initialize styles
+                if (title.classList.contains('active')) {
+                    chars.forEach(char => { char.style.color = '#000'; });
+                } else {
+                    chars.forEach(char => { char.style.color = '#000'; });
+                }
+
+                // Hover Interaction
+                title.addEventListener('mouseenter', () => {
+                    hoverTimeouts.forEach(t => clearTimeout(t)); // Clear any reversing timeouts
+                    hoverTimeouts = [];
+
+                    // PURE Disney Squash and Stretch Physics!
+                    gsap.set(chars, { transformOrigin: "50% 100%" });
+                    
+                    // Dynamic keyframes to prevent snapping on rapid hover
+                    const currentY = chars.length > 0 ? gsap.getProperty(chars[0], "y") : 0;
+                    let physicsFrames = [];
+                    
+                    if (currentY > -5) {
+                        // Only do anticipation squash if starting from ground
+                        physicsFrames.push({ y: 0, scaleY: 0.5, scaleX: 1.3, rotationZ: -10, duration: 0.15, ease: "power2.inOut" });
+                    }
+                    
+                    physicsFrames.push(
+                        { y: -45, scaleY: 1.5, scaleX: 0.6, rotationZ: 10, duration: 0.2, ease: "power2.out" },
+                        { y: -50, scaleY: 1, scaleX: 1, rotationZ: 0, duration: 0.15, ease: "sine.inOut" },
+                        { y: 0, scaleY: 0.6, scaleX: 1.4, rotationZ: 0, duration: 0.15, ease: "power2.in" },
+                        { y: 0, scaleY: 1, scaleX: 1, rotationZ: 0, duration: 0.5, ease: "elastic.out(1.5, 0.4)" }
+                    );
+
+                    // Dynamic stagger calculation: cap max total stagger time to ~0.4s
+                    const len = chars.length || 1;
+                    const animStaggerDelay = Math.min(0.04, 0.4 / len);
+                    const fontSwapDelayFwd = animStaggerDelay * 1000 / 2; // Roughly half the animation delay to keep font swap in sync
+
+                    gsap.to(chars, {
+                        keyframes: physicsFrames,
+                        stagger: { each: animStaggerDelay, from: "start" },
+                        overwrite: "auto"
+                    });
+
+                    // JS Stagger for Color and Font Swap
+                    chars.forEach((char, i) => {
+                        const timeout = setTimeout(() => {
+                            char.style.transition = 'color 0.2s ease';
+                            char.style.color = '#000';
+                            
+                            const swash = char.querySelector('.swash');
+                            if (swash) {
+                                swash.style.transition = 'none';
+                                swash.style.fontFamily = "'Bickham Script Pro', cursive";
+                                swash.style.fontSize = "1.7em";
+                                swash.style.marginRight = "0.15em";
+                                swash.style.marginLeft = "0.08em";
+                                swash.style.lineHeight = "0.5";
+                                
+                                const orns = swash.querySelectorAll('.swash-ornament');
+                                if (orns.length > 0) {
+                                    gsap.killTweensOf(orns);
+                                    gsap.fromTo(orns, 
+                                        { opacity: 0, scale: 0, x: 0, y: 0, rotation: 0 },
+                                        { 
+                                            opacity: () => gsap.utils.random(0.4, 0.9), 
+                                            scale: () => gsap.utils.random(0.3, 1.2),
+                                            x: () => gsap.utils.random(-35, 35),
+                                            y: () => gsap.utils.random(-35, 35),
+                                            rotation: () => gsap.utils.random(-180, 180),
+                                            duration: 0.6,
+                                            ease: "back.out(2)",
+                                            stagger: 0.05
+                                        }
+                                    );
+                                    gsap.to(orns, {
+                                        opacity: 0,
+                                        y: "+=20",
+                                        duration: 0.5,
+                                        delay: 0.5,
+                                        ease: "power2.in"
+                                    });
+                                }
+                            }
+                        }, i * fontSwapDelayFwd);
+                        hoverTimeouts.push(timeout);
+                    });
+                });
+
+                title.addEventListener('mouseleave', () => {
+                    hoverTimeouts.forEach(t => clearTimeout(t)); // Clear any forward timeouts
+                    hoverTimeouts = [];
+                    const isActive = title.classList.contains('active');
+
+                    // Dynamic reverse stagger calculation: cap max reverse stagger time to ~0.2s
+                    const len = chars.length || 1;
+                    const reverseStaggerDelay = Math.min(0.015, 0.2 / len);
+                    const fontSwapDelayRev = reverseStaggerDelay * 1000 / 1.5;
+
+                    // Reset Transforms cleanly
+                    gsap.to(chars, {
+                        y: 0,
+                        rotationZ: 0,
+                        scaleY: 1,
+                        scaleX: 1,
+                        duration: 0.4,
+                        ease: "power2.out",
+                        stagger: { each: reverseStaggerDelay, from: "start" },
+                        overwrite: "auto"
+                    });
+
+                    // Fast Reverse Stagger for Color and Font Swap
+                    chars.forEach((char, i) => {
+                        const timeout = setTimeout(() => {
+                            char.style.transition = 'color 0.2s ease';
+                            char.style.color = '#000';
+                            
+                            const swash = char.querySelector('.swash');
+                            if (swash) {
+                                swash.style.transition = '';
+                                swash.style.fontFamily = '';
+                                swash.style.fontSize = '';
+                                swash.style.marginRight = '';
+                                swash.style.marginLeft = '';
+                                swash.style.lineHeight = '';
+                                
+                                const orns = swash.querySelectorAll('.swash-ornament');
+                                if (orns.length > 0) {
+                                    gsap.killTweensOf(orns);
+                                    gsap.to(orns, {opacity: 0, scale: 0, duration: 0.2});
+                                }
+                            }
+                        }, i * fontSwapDelayRev);
+                        hoverTimeouts.push(timeout);
+                    });
+                });
+
+                // Click Interaction
+                title.addEventListener('click', () => {
+                    if(title.classList.contains('active')) return;
+                    
+                    // Remove active from all
+                    document.querySelectorAll('.work-title').forEach(t => t.classList.remove('active'));
+                    // Add active
+                    title.classList.add('active');
+                    
+                    // Change background with slight zoom
+                    const newBgSrc = title.getAttribute('data-bg');
+                    
+                    if(currentBgAnim) currentBgAnim.kill();
+                    
+                    // Fade out old bg slightly, swap src, fade in and zoom
+                    gsap.to(bgImg, {opacity: 0, duration: 0.3, onComplete: () => {
+                        bgImg.src = newBgSrc;
+                        
+                        // Reset scale and animate to zoom slightly
+                        gsap.set(bgImg, {scale: 1, opacity: 0});
+                        currentBgAnim = gsap.timeline()
+                            .to(bgImg, {opacity: 1, duration: 0.8, ease: "power2.out"})
+                            .to(bgImg, {scale: 1.05, duration: 6, ease: "sine.out"}, "<");
+                    }});
+                    
+                    // Text animation: stagger letters
+                    gsap.fromTo(chars, 
+                        { opacity: 0, y: 15 },
+                        { opacity: 1, y: 0, duration: 0.6, ease: "back.out(1.5)", stagger: 0.03, overwrite: "auto" }
+                    );
+                });
+            });
+
+            // 3. Set initial center position
+            gsap.set(titleEl, { y: "25vh", perspective: 800 });
+            
+            // 4. Animate characters thrown in and snapping upright
+            pageTl.from(".title-char", {
+                duration: 0.9,
+                opacity: 0,
+                scale: 1.5,
+                x: () => gsap.utils.random(-150, 150),
+                y: () => gsap.utils.random(-100, 200),
+                z: () => gsap.utils.random(100, 300),
+                rotationX: () => gsap.utils.random(70, 110),
+                rotationY: () => gsap.utils.random(-45, 45),
+                rotationZ: () => gsap.utils.random(-45, 45),
+                stagger: 0.08,
+                ease: "back.out(2.5)"
+            })
+            // 5. Move title up to original position
+            .to(titleEl, {
+                y: 0, 
+                duration: 1.2, 
+                ease: "power3.inOut"
+            }, "+=0.3")
+            // 6. Fade in content
+            .to(hideElements, {
+                opacity: 1, duration: 1.2, stagger: 0.1, ease: "power2.out"
+            }, "-=0.6");
+        }
+
+        // Hamburger Menu Logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuOverlay = document.querySelector('.menu-overlay');
+
+        menuToggle.addEventListener('click', () => {
+            menuOverlay.classList.toggle('open');
+            document.body.classList.toggle('menu-active');
+        });
+
+        // News Sidebar Logic
+        const newsBtn = document.getElementById('news-btn');
+        const newsSidebar = document.getElementById('news-sidebar');
+        const newsClose = document.getElementById('news-close');
+
+        const newsBtnSvg = newsBtn.querySelector('svg');
+        gsap.set(newsBtnSvg, { transformOrigin: "50% 10%" });
+        
+        const ringBellAnim = () => {
+            if (gsap.isTweening(newsBtnSvg)) return;
+            gsap.fromTo(newsBtnSvg, 
+                { rotation: 25 }, 
+                { rotation: 0, duration: 1.5, ease: "elastic.out(1.5, 0.2)", clearProps: "rotation" }
+            );
+        };
+        
+        newsBtn.addEventListener('mouseenter', ringBellAnim);
+
+        newsBtn.addEventListener('click', () => {
+            ringBellAnim();
+            newsSidebar.classList.add('open');
+            document.body.classList.add('news-active');
+        });
+
+        newsClose.addEventListener('click', () => {
+            newsSidebar.classList.remove('open');
+            document.body.classList.remove('news-active');
+        });
+        
+
+        
+        // Initial setup for the first item
+        const activeTitle = document.querySelector('.work-title.active');
+        if(activeTitle) {
+            bgImg.src = activeTitle.getAttribute('data-bg');
+            gsap.set(bgImg, {scale: 1, opacity: 1});
+            currentBgAnim = gsap.to(bgImg, {scale: 1.05, duration: 10, ease: "none"});
+        }
+
+        
+
+        // Auto Scroll "Movie Credits" Logic (GPU Accelerated)
+        const scrollContainer = document.querySelector('.work-scroll-container');
+        const workList = document.querySelector('.work-list');
+        
+        let autoScrollActive = false;
+        let inactivityTimer;
+        let autoScrollTween;
+        const scrollSpeedPixelsPerSecond = 40; // Cinematic speed
+
+        function startAutoScroll() {
+            if (autoScrollActive) return;
+            autoScrollActive = true;
+            
+            // Calculate how far we can scroll
+            const maxScroll = scrollContainer.scrollHeight - scrollContainer.clientHeight;
+            const currentScroll = scrollContainer.scrollTop;
+            const remainingScroll = maxScroll - currentScroll;
+            
+            if (remainingScroll <= 1) {
+                autoScrollActive = false;
+                return; // Already at bottom
+            }
+            
+            // Calculate duration based on constant speed
+            const duration = remainingScroll / scrollSpeedPixelsPerSecond;
+            
+            // Use GPU transform for buttery smooth sub-pixel animation
+            autoScrollTween = gsap.to(workList, {
+                y: -remainingScroll,
+                duration: duration,
+                ease: "none",
+                onComplete: () => {
+                    syncScrollAndResetY();
+                    autoScrollActive = false;
+                }
+            });
+        }
+
+        function syncScrollAndResetY() {
+            if (!workList) return;
+            const currentY = gsap.getProperty(workList, "y");
+            if (currentY < 0) {
+                // Instantly apply the fake visual scroll to the real physical scroll
+                scrollContainer.scrollTop += Math.abs(currentY);
+                // Reset fake visual scroll
+                gsap.set(workList, { y: 0 });
+            }
+        }
+
+        function stopAutoScroll() {
+            if (!autoScrollActive) return;
+            autoScrollActive = false;
+            
+            if (autoScrollTween) {
+                autoScrollTween.kill();
+            }
+            // Hand over control back to the native browser scrollbar
+            syncScrollAndResetY();
+        }
+
+        function resetInactivityTimer() {
+            stopAutoScroll();
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(() => {
+                startAutoScroll();
+            }, 10000); // 10 seconds of inactivity
+        }
+
+        // Start scrolling immediately once the initial page animations finish
+        setTimeout(() => {
+            startAutoScroll();
+        }, 3000); // Wait 3s for intro anims to fully finish
+
+        // Listen for INTENTIONAL user activity to pause the scroll
+        window.addEventListener('mousedown', resetInactivityTimer);
+        window.addEventListener('keydown', resetInactivityTimer);
+        window.addEventListener('touchstart', resetInactivityTimer, { passive: true });
+        scrollContainer.addEventListener('wheel', resetInactivityTimer, { passive: true });
+        scrollContainer.addEventListener('touchmove', resetInactivityTimer, { passive: true });
+    });
+</script>
+
+    <!-- Global Logo Scroll Logic -->
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const logoEl = document.querySelector('.logo-text');
+        if (!logoEl) return;
+        
+        let isLogoHiddenFlag = false;
+        
+        function checkLogoVisibility() {
+            let totalScroll = 0;
+            const sc = document.querySelector('.work-scroll-container');
+            const wl = document.querySelector('.work-list');
+            
+            if (sc) totalScroll += sc.scrollTop;
+            if (wl) {
+                try {
+                    const yVal = (typeof gsap !== 'undefined') ? gsap.getProperty(wl, "y") : 0;
+                    totalScroll += Math.abs(parseFloat(yVal) || 0);
+                } catch(e) {}
+            }
+            totalScroll += window.scrollY || document.documentElement.scrollTop || 0;
+            
+            if (totalScroll > 50 && !isLogoHiddenFlag) {
+                isLogoHiddenFlag = true;
+                logoEl.classList.add('hidden-logo');
+            } else if (totalScroll <= 50 && isLogoHiddenFlag) {
+                isLogoHiddenFlag = false;
+                logoEl.classList.remove('hidden-logo');
+            }
+            
+            requestAnimationFrame(checkLogoVisibility);
+        }
+        
+        requestAnimationFrame(checkLogoVisibility);
+    });
+    </script>
+
+</body>
+
+</html>
